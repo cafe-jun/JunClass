@@ -5,17 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { envConfig } from './config/envConfig';
 import { DatabaseConfig } from './config/databaseConfig';
+import { UserModule } from './user/user.module';
+import * as ormconfig from '../ormconfig';
+
+console.log(ormconfig);
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [envConfig]
-    }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useClass: DatabaseConfig
-    })
-  ],
+  imports: [TypeOrmModule.forRoot(ormconfig), UserModule],
   controllers: [AppController],
   providers: [AppService]
 })

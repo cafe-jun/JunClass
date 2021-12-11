@@ -1,5 +1,3 @@
-import { User } from '../entity/User';
-
 export const envConfig = () => ({
   port: process.env.PORT || 3000,
   database: {
@@ -9,10 +7,10 @@ export const envConfig = () => ({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
+    entities: ['../entity/**/*.entity.{ts,js}'],
+    // migrations: ['src/migration/**/*.ts'],
+    // subscribers: ['src/subscriber/**/*.ts'],
     logging: true,
-    entities: [User],
-    migrations: ['../migration/**/*.ts'],
-    subscribers: ['../subscriber/**/*.ts'],
     keepConnectionAlive: true,
     autoLoadEntities: true,
     charset: 'utf8mb4',
