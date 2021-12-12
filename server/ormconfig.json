@@ -1,0 +1,11 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "post": "3306",
+  "username": "root",
+  "password": "Jsshin2440!@",
+  "database": "JunClass",
+  "synchronize": false,
+  "logging": true,
+  "entities": ["build/**/*.entity.{ts,js}"]
+}

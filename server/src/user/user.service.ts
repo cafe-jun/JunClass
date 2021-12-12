@@ -1,22 +1,36 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../entity/user.entity';
-import { Repository } from 'typeorm';
+import { Users, UsersGender } from './user.model';
+import { v4 as uuid } from 'uuid';
+// import { User } from '../entity/user.entity';
+// import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { SignInDto } from './dto/signin.dto';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(User) private userRepository: Repository<User>
-  ) {}
-  findAll(): Promise<User[]> {
-    return this.userRepository.find();
-  }
+  private users: Users[] = [];
 
-  findOne(id: string): Promise<User> {
-    return this.userRepository.findOne(id);
+  getAllUser(): Users[] {
+    return this.users;
   }
-
-  async remove(id: string): Promise<void> {
-    await this.userRepository.delete(id);
+  createUser(signInDto: SignInDto): Users {
+    const { name, age } = signInDto;
+    const user: Users = {
+      id: uuid(),
+      name,
+      age,
+      gender: UsersGender.MAN
+    };
+    this.users.push(user);
+    return user;
+  }
+  getUserById(id: string): Users {
+    return this.users.find((user) => user.id === id);
+  }
+  destroyUser(id: string) {
+    return this.users.filter((user) => user.id !== id);
+  }
+  updateUser(id: string) {
+    return this.users.find((user) => user.id === id);
   }
 }

@@ -6,11 +6,9 @@ import { ConfigModule } from '@nestjs/config';
 import { envConfig } from './config/envConfig';
 import { DatabaseConfig } from './config/databaseConfig';
 import { UserModule } from './user/user.module';
-import * as ormconfig from '../ormconfig';
 
-console.log(ormconfig);
 @Module({
-  imports: [TypeOrmModule.forRoot(ormconfig), UserModule],
+  imports: [/*TypeOrmModule.forRoot(),*/ UserModule],
   controllers: [AppController],
   providers: [AppService]
 })
