@@ -8,7 +8,7 @@ import { DatabaseConfig } from './config/databaseConfig';
 import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [/*TypeOrmModule.forRoot(),*/ UserModule],
+  imports: [TypeOrmModule.forRoot(), UserModule],
   controllers: [AppController],
   providers: [AppService]
 })
