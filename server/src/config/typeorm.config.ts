@@ -1,7 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import * as config from 'config';
-const dbConfig = config.get('db');
-
+// import * as config from 'config';
+// const dbConfig = config.get('db');
+import { User } from '../entity/user.entity';
 export const typeORMConfig: TypeOrmModuleOptions = {
   type: 'mysql',
   host: 'localhost',
@@ -11,5 +11,5 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   database: 'JunClass',
   synchronize: true,
   logging: true,
-  entities: [__dirname + '/../**/*.entity.{js,ts}']
+  entities: [User /*0__dirname +  'dist/entity/*.entity.{ts,js}'*/]
 };
