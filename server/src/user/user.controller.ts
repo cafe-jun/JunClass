@@ -5,7 +5,9 @@ import {
   Body,
   Param,
   Delete,
-  Patch
+  Patch,
+  ParseIntPipe,
+  Put
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from 'src/entity/user.entity';
@@ -15,24 +17,28 @@ import { SignInDto } from './dto/signin.dto';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  // @Get('/')
-  // getAllUsers(): Users[] {
-  //   return this.userService.getAllUser();
-  // }
+  @Get('/')
+  getAllUsers(): Promise<User[]> {
+    return this.userService.getAllUser();
+  }
   @Get('/:id')
-  getUserById(@Param('id') id: string): Promise<User> {
+  getUserById(@Param('id', ParseIntPipe) id): Promise<User> {
     return this.userService.getUserById(id);
   }
   @Post('/')
   createUser(@Body() signInDto: SignInDto): Promise<User> {
     return this.userService.createUser(signInDto);
   }
-  // @Delete('/:id')
-  // destroyUser(@Param('id') id: string): void {
-  //   this.userService.destroyUser(id);
-  // }
-  // @Patch('/:id/gender')
-  // updateUserGenger(@Param('id') id: string): Users {
-  //   return this.userService.updateUser(id);
-  // }
+  @Delete('/:id') // 숫자일경우  ParseIntPipe
+  destroyUser(@Param('id', ParseIntPipe) id): void {
+    this.userService.deleteUser(id);
+  }
+  @Put('/:id')
+  updateUser(
+    @Param('id', ParseIntPipe) id,
+    @Body('age') age: number,
+    @Body('name') name: string
+  ): Promise<User> {
+    return this.userService.updateUser(id, name, age);
+  }
 }

@@ -9,7 +9,8 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   username: 'root',
   password: 'Jsshin2440!@',
   database: 'JunClass',
-  synchronize: true,
+  keepConnectionAlive: true,
+  synchronize: false,
   logging: true,
   entities: [User /*0__dirname +  'dist/entity/*.entity.{ts,js}'*/]
 };

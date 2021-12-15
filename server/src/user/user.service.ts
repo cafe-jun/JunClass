@@ -12,15 +12,36 @@ export class UserService {
   ) {}
   // private users: Users[] = [];
 
-  // getAllUser(): Users[] {
-  //   return this.users;
-  // }
+  async getAllUser(): Promise<User[]> {
+    return this.userRepository.find();
+  }
   async createUser(signInDto: SignInDto): Promise<User> {
     const { name, age } = signInDto;
     const user = await this.userRepository.create({ name, age });
     await this.userRepository.save(user);
     return user;
   }
+
+  async getUserById(id: number): Promise<User> {
+    const found = await this.userRepository.findOne(id);
+    if (!found) throw new NotFoundException(`Can't find User with id ${id}`);
+    return found;
+  }
+
+  async deleteUser(id: number): Promise<void> {
+    const result = await this.userRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Can't find Board with id ${id}`);
+    }
+  }
+  async updateUser(id: number, name: string, age: number): Promise<User> {
+    const user = await this.getUserById(id);
+    user.name = name;
+    user.age = age;
+    await this.userRepository.save(user);
+    return user;
+  }
+
   // createUser(signInDto: SignInDto): Users {
   //   const { name, age } = signInDto;
   //   const user: Users = {
@@ -32,13 +53,6 @@ export class UserService {
   //   this.users.push(user);
   //   return user;
   // }
-
-  async getUserById(id: string): Promise<User> {
-    const found = await this.userRepository.findOne(id);
-    if (!found) throw new NotFoundException(`Can't find User with id ${id}`);
-    return found;
-  }
-
   // getUserById(id: string): Users {
   //   return this.users.find((user) => user.id === id);
   // }
