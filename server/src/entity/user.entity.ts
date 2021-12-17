@@ -10,4 +10,6 @@ export class User extends BaseEntity {
 
   @Column()
   age: number;
+  @Column()
+  password: string;
 }
