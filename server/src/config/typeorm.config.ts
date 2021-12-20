@@ -2,6 +2,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 // import * as config from 'config';
 // const dbConfig = config.get('db');
 import { User } from '../entity/user.entity';
+import { Gathering } from '../entity/gathering.entity';
 export const typeORMConfig: TypeOrmModuleOptions = {
   type: 'mysql',
   host: 'localhost',
@@ -10,7 +11,7 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   password: 'Jsshin2440!@',
   database: 'JunClass',
   keepConnectionAlive: true,
-  synchronize: false,
+  synchronize: true,
   logging: true,
-  entities: [User /*0__dirname +  'dist/entity/*.entity.{ts,js}'*/]
+  entities: [User, Gathering /*0__dirname +  'dist/entity/*.entity.{ts,js}'*/]
 };

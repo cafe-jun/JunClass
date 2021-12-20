@@ -7,10 +7,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // import { DatabaseConfig } from './config/databaseConfig';
 import { UserModule } from './user/user.module';
 import { typeORMConfig } from './config/typeorm.config';
-import { ClassModule } from './class/class.module';
 import { AuthModule } from './auth/auth.module';
+import { GatheringModule } from './gathering/gathering.module';
 @Module({
-  imports: [TypeOrmModule.forRoot(typeORMConfig), UserModule, ClassModule, AuthModule],
+  imports: [
+    TypeOrmModule.forRoot(typeORMConfig),
+    UserModule,
+    AuthModule,
+    GatheringModule
+  ],
   controllers: [AppController],
   providers: [AppService]
 })
