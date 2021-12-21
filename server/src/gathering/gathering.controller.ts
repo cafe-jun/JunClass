@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Put, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body
+} from '@nestjs/common';
 import { Gathering } from 'src/entity/gathering.entity';
 import { GatheringService } from './gathering.service';
 @Controller('gathering')
@@ -9,17 +17,25 @@ export class GatheringController {
     return this.gatheringService.getAllGathering();
   }
   @Get('/:id')
-  getByIdGathering(): Promise<Gathering> {
-    return this.gatheringService.getGatheringById();
+  getByIdGathering(@Param('id') id: number): Promise<Gathering> {
+    return this.gatheringService.getGatheringById(id);
   }
   @Post('/')
-  createGathering(): Promise<Gather> {
-    return this.gatheringService.createGathering();
+  createGathering(
+    @Body('title') title: string,
+    @Body('thumbnail') thumbnail: string,
+    @Body('type') type: string
+  ): Promise<Gathering> {
+    return this.gatheringService.createGathering({ title, thumbnail, type });
   }
-  @Put('/:id')
-  updateGathering(): Promise<void> {
-    return this.gatheringService.updateUser();
-  }
+  //   @Put('/:id')
+  //   updateGathering(@Param(id)): Promise<void> {
+  //     return this.gatheringService.updateUser({
+
+  //     });
+  //   }
   @Delete('/:id')
-  deleteGathering(): Promise<void> {}
+  deleteGathering(@Param('id') id: number): Promise<void> {
+    return this.gatheringService.deleteGathering(id);
+  }
 }
