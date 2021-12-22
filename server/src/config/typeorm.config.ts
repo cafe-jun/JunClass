@@ -13,5 +13,9 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   keepConnectionAlive: true,
   synchronize: true,
   logging: true,
-  entities: [User, Gathering /*0__dirname +  'dist/entity/*.entity.{ts,js}'*/]
+  entities: [User, Gathering /*0__dirname +  'dist/entity/*.entity.{ts,js}'*/],
+  migrations: ['dist/src/db/migrations/*js'],
+  cli: {
+    migrationsDir: 'src/db/migrations'
+  }
 };
