@@ -9,6 +9,8 @@ import { UserModule } from './user/user.module';
 import { typeORMConfig } from './config/typeorm.config';
 import { AuthModule } from './auth/auth.module';
 import { GatheringModule } from './gathering/gathering.module';
+import { configService } from './config/config.service';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeORMConfig),
