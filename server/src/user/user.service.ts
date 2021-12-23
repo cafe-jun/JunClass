@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SignInDto } from './dto/signin.dto';
 import { UserRepository } from './user.repostiory';
-import { User } from 'src/entity/user.entity';
+import { User } from './user.entity';
 
 @Injectable()
 export class UserService {

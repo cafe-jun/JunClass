@@ -7,7 +7,7 @@ import {
   Param,
   Body
 } from '@nestjs/common';
-import { Gathering } from 'src/entity/gathering.entity';
+import { Gathering } from './gathering.entity';
 import { GatheringService } from './gathering.service';
 @Controller('gathering')
 export class GatheringController {

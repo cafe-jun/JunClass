@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { GatheringRepository } from './gathering.repostiory';
-import { Gathering } from '../entity/gathering.entity';
+import { Gathering } from './gathering.entity';
 import { CreateGatheringDto } from './dto/create-gathering';
 import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()

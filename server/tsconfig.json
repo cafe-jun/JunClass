@@ -1,14 +1,21 @@
 {
   "compilerOptions": {
-    "lib": ["es5", "es6"],
-    "target": "es5",
+    //  "lib": ["es5", "es6"],
     "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "target": "ES2017",
+    "incremental": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "outDir": "./build",
+    "outDir": "./dist",
+    "baseUrl": "./",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "esModuleInterop": true,
-    "no-var-requires": true
-  }
+    "esModuleInterop": true
+    //  "no-var-requires": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
 }
