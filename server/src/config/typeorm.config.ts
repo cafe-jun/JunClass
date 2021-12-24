@@ -14,9 +14,9 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   keepConnectionAlive: true,
   synchronize: false,
   logging: true,
-  entities: [__dirname + '/../**/*.entity.{js,ts}']
-  // migrations: ['/../migrations/*js']
-  // cli: {
-  //   migrationsDir: 'src/db/migrations'
-  // }
+  entities: [__dirname + '/../**/*.entity.{js,ts}'],
+  migrations: ['src/db/migration/**.ts'],
+  cli: {
+    migrationsDir: 'src/db/migration/**.ts'
+  }
 };
