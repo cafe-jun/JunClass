@@ -1,22 +1,23 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { User } from '../user/user.entity';
-import { Gathering } from '../gathering/gathering.entity';
+import path from 'path';
+// import { User } from './src/user/user.entity';
+// import { Gathering } from './src/gathering/gathering.entity';
+import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 // import * as config from 'config';
 // const dbConfig = config.get('db');
 
-export const typeORMConfig: TypeOrmModuleOptions = {
+const config: MysqlConnectionOptions = {
   type: 'mysql',
   host: 'localhost',
   port: 3306,
   username: 'root',
   password: 'Jsshin2440!@',
   database: 'JunClass',
-  keepConnectionAlive: true,
-  synchronize: false,
-  logging: true,
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  migrations: ['src/db/migration/**.ts'],
+  entities: ['/../**/*.entity{.ts,.js}'],
+  migrations: [path.join(path.resolve(__dirname), '/src/db/migrations/*.js')],
   cli: {
-    migrationsDir: 'src/db/migration/**.ts'
+    migrationsDir: 'src/db/migrations'
   }
 };
+
+export default config;

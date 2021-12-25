@@ -17,5 +17,5 @@
     //  "no-var-requires": true
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "ormconfig.ts"]
 }

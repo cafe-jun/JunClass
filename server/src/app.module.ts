@@ -2,18 +2,16 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { ConfigModule } from '@nestjs/config';
-// import { envConfig } from './config/envConfig';
-// import { DatabaseConfig } from './config/databaseConfig';
 import { UserModule } from './user/user.module';
-import { typeORMConfig } from './config/typeorm.config';
+import config from './config/typeorm.config';
+// import config from '../ormconfig';
 import { AuthModule } from './auth/auth.module';
 import { GatheringModule } from './gathering/gathering.module';
-import { configService } from './config/config.service';
-
+import path from 'path';
+console.log(path.join(path.resolve(__dirname), '/src/**/*.entity.js'));
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeORMConfig),
+    TypeOrmModule.forRoot(config),
     UserModule,
     AuthModule,
     GatheringModule
