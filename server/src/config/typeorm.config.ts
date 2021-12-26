@@ -1,7 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import path from 'path';
-// import { User } from './src/user/user.entity';
-// import { Gathering } from './src/gathering/gathering.entity';
+import { User } from '../user/user.entity';
+import { Gathering } from '../gathering/gathering.entity';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 // import * as config from 'config';
 // const dbConfig = config.get('db');
@@ -13,8 +13,16 @@ const config: MysqlConnectionOptions = {
   username: 'root',
   password: 'Jsshin2440!@',
   database: 'JunClass',
-  entities: ['/../**/*.entity{.ts,.js}'],
-  migrations: [path.join(path.resolve(__dirname), '/src/db/migrations/*.js')],
+  entities: [
+    User,
+    Gathering
+    // path.join(path.resolve(__dirname, '../../dist/src/**/*.entity{.ts,.js}'))
+  ], //[User, Gathering],
+  migrations: [
+    path.join(
+      path.resolve(__dirname, '../../dist/src/db/migrations/*{.ts,.js}')
+    )
+  ],
   cli: {
     migrationsDir: 'src/db/migrations'
   }
