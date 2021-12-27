@@ -3,6 +3,7 @@ import { GatheringRepository } from './gathering.repostiory';
 import { Gathering } from './gathering.entity';
 import { CreateGatheringDto } from './dto/create-gathering';
 import { InjectRepository } from '@nestjs/typeorm';
+import { GatheringType } from './gathering-type.enum';
 @Injectable()
 export class GatheringService {
   constructor(
@@ -44,6 +45,15 @@ export class GatheringService {
   ): Promise<Gathering> {
     const gathering = await this.getGatheringById(id);
 
+    await this.gatheringRepository.save(gathering);
+    return gathering;
+  }
+  async updateGatheringType(
+    id: number,
+    type: GatheringType
+  ): Promise<Gathering> {
+    const gathering = await this.getGatheringById(id);
+    gathering.type = type;
     await this.gatheringRepository.save(gathering);
     return gathering;
   }
