@@ -1,4 +1,3 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import path from 'path';
 import { User } from '../user/user.entity';
 import { Gathering } from '../gathering/gathering.entity';

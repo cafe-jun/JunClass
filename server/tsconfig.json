@@ -5,7 +5,7 @@
     "declaration": true,
     "removeComments": true,
     "target": "ES2017",
-    "incremental": true,
+    // "incremental": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "outDir": "./dist",
