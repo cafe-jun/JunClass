@@ -29,6 +29,7 @@ export class UserService {
   }
 
   async deleteUser(id: number): Promise<void> {
+    console.log(id);
     const result = await this.userRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Can't find Board with id ${id}`);
