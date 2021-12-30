@@ -7,8 +7,7 @@ import config from './config/typeorm.config';
 // import config from '../ormconfig';
 import { AuthModule } from './auth/auth.module';
 import { GatheringModule } from './models/gathering/gathering.module';
-import { ChatService } from './models/chat/chat.service';
-import { ChatGateway } from './models/chat.gateway';
+
 import { ChatModule } from './models/chat/chat.module';
 import path from 'path';
 console.log(path.join(path.resolve(__dirname), '/src/**/*.entity.js'));
@@ -21,6 +20,6 @@ console.log(path.join(path.resolve(__dirname), '/src/**/*.entity.js'));
     ChatModule
   ],
   controllers: [AppController],
-  providers: [AppService, ChatService, ChatGateway]
+  providers: [AppService]
 })
 export class AppModule {}
