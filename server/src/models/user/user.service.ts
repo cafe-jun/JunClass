@@ -16,8 +16,8 @@ export class UserService {
     return this.userRepository.find();
   }
   async createUser(signInDto: SignInDto): Promise<User> {
-    const { name, age } = signInDto;
-    const user = await this.userRepository.create({ name, age });
+    const { name, password } = signInDto;
+    const user = await this.userRepository.create({ name, password });
     await this.userRepository.save(user);
     return user;
   }

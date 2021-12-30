@@ -3,7 +3,7 @@ import {
   ArgumentMetadata,
   BadRequestException
 } from '@nestjs/common';
-import { GatheringType } from '../gathering-type.enum';
+import { GatheringType } from '../../models/gathering/gathering-type.enum';
 
 export class GatheringTypeValidation implements PipeTransform {
   readonly TypeOptions = [GatheringType.PREMIUM, GatheringType.GENERAL];

@@ -13,7 +13,7 @@ import {
 import { Gathering } from './gathering.entity';
 import { GatheringService } from './gathering.service';
 import { CreateGatheringDto } from './dto/create-gathering';
-import { GatheringTypeValidation } from './pipe/gathering-type-validation';
+import { GatheringTypeValidation } from '../../common/pipe/gathering-type-validation';
 import { GatheringType } from './gathering-type.enum';
 @Controller('gathering')
 export class GatheringController {
