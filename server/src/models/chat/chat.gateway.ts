@@ -21,8 +21,8 @@ export class ChatGateway
 
   constructor(private chatService: ChatService) {}
 
-  @SubscribeMessage('login')
-  async handleLogin() {}
+  // @SubscribeMessage('login')
+  // async handleLogin() {}
 
   afterInit() {
     ChatGateway.logger.debug(`Socket Server Init Complete`);
