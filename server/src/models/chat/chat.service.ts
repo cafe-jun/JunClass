@@ -38,7 +38,6 @@ export class ChatService implements OnModuleInit, OnModuleDestroy {
     });
   }
   public async sendMessage(sid: string) {
-    // this.publisherClient.publish('test', 'hello');
     console.log(sid);
   }
   public async subscribeChannel(channel: string) {

@@ -21,8 +21,8 @@ export class ChatGateway
 
   constructor(private chatService: ChatService) {}
 
-  // @SubscribeMessage('login')
-  // async handleLogin() {}
+  @SubscribeMessage('login')
+  async handleLogin() {}
 
   afterInit() {
     ChatGateway.logger.debug(`Socket Server Init Complete`);
@@ -36,7 +36,7 @@ export class ChatGateway
       this.chatService.subscribeChannel('channel:ssu-repl');
       this.chatService.publishAsync(
         'channel:ssu-repl',
-        `${client.id} 님이 입장 했습니다.`
+        `${client.id} connected socket join`
       );
     } catch (error) {
       console.log(error);

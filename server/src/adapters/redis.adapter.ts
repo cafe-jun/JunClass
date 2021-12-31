@@ -10,10 +10,10 @@ import { promisify } from 'util';
 // });
 // const coreRedisClient = globalSubscriber.duplicate();
 
-// const publishAsync = promisify(coreRedisClient.publish).bind(coreRedisClient);
 // export const publishJSON = (channel: string, json: any) =>
 //   publishAsync(channel, JSON.stringify(json));
 
+// const publishAsync = promisify(coreRedisClient.publish).bind(coreRedisClient);
 export const pubClient = new RedisClient({
   host: 'localhost',
   port: 6379
