@@ -27,6 +27,9 @@ type CandidatedAction = {
   from: string;
   candidate: any;
 };
+type InvitedAction = {
+  type: 'invited';
+};
 
 export type sendAction =
   | connectedAction
@@ -34,7 +37,8 @@ export type sendAction =
   | SubscriptionSuccess
   | EnteredAction
   | AnsweredAction
-  | CandidatedAction;
+  | CandidatedAction
+  | InvitedAction;
 
 const actionCreator = {
   connected: (id: string): connectedAction => ({
@@ -44,6 +48,9 @@ const actionCreator = {
   subscriptionSuccess: (key: string): SubscriptionSuccess => ({
     type: 'subscriptionSuccess',
     key
+  }),
+  inviteUser: (user: string): InvitedAction => ({
+    type: 'invited'
   })
 };
 

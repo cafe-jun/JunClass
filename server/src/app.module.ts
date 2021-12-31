@@ -4,13 +4,11 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './models/user/user.module';
 import config from './config/typeorm.config';
-// import config from '../ormconfig';
+
 import { AuthModule } from './auth/auth.module';
 import { GatheringModule } from './models/gathering/gathering.module';
-
 import { ChatModule } from './models/chat/chat.module';
-import path from 'path';
-console.log(path.join(path.resolve(__dirname), '/src/**/*.entity.js'));
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),

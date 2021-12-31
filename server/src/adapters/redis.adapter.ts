@@ -14,15 +14,16 @@ import { promisify } from 'util';
 // export const publishJSON = (channel: string, json: any) =>
 //   publishAsync(channel, JSON.stringify(json));
 
-export const pubClient = new RedisClient({ host: 'localhost', port: 6379 });
+export const pubClient = new RedisClient({
+  host: 'localhost',
+  port: 6379
+});
 
-const subClient = pubClient.duplicate();
-
+export const subClient = pubClient.duplicate();
 const redisAdapter = createAdapter({ pubClient, subClient });
 
 export class RedisIoAdapter extends IoAdapter {
   createIOServer(port: number, options?: ServerOptions): any {
-    console.log(port, options);
     const server = super.createIOServer(port, options);
     server.adapter(redisAdapter);
     return server;
