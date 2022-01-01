@@ -1,9 +1,11 @@
-import { IsEmail, IsString, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsString, IsNumber } from 'class-validator';
 
 export class SignInRequestDto {
   @IsEmail()
   public email: string;
+
+  @IsNumber()
+  public age: number;
   @IsString()
-  @IsNotEmpty()
   public password: string;
 }

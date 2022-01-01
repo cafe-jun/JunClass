@@ -17,6 +17,8 @@ const config: MysqlConnectionOptions = {
     Gathering
     // path.join(path.resolve(__dirname, '../../dist/src/**/*.entity{.ts,.js}'))
   ], //[User, Gathering],
+  synchronize: false,
+  logging: true,
   migrations: [
     path.join(
       path.resolve(__dirname, '../../dist/src/db/migrations/*{.ts,.js}')

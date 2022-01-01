@@ -3,9 +3,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRepository } from '../users/users.repostiory';
-import { AuthController } from 'src/auth/auth.controller';
-import { AuthService } from 'src/auth/auth.service';
 import { LocalStrategy } from 'src/common/gurad/local.strategy';
+import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
+import { LocalSerializer } from '../../common/gurad/local.serializer';
+import { Users } from '../users/users.entity';
 
 @Module({
   imports: [
@@ -18,9 +20,9 @@ import { LocalStrategy } from 'src/common/gurad/local.strategy';
     //     expiresIn: 60 * 60
     //   }
     // }),
-    TypeOrmModule.forFeature([UserRepository])
+    TypeOrmModule.forFeature([Users])
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy]
+  providers: [AuthService, LocalStrategy, LocalSerializer]
 })
 export class AuthModule {}

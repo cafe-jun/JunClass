@@ -3,18 +3,27 @@ import {
   PrimaryGeneratedColumn,
   Column,
   BaseEntity,
-  Unique
+  Unique,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn
 } from 'typeorm';
 
 @Entity('Users')
-@Unique(['email'])
 export class Users extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-  @Column()
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+  @Column('varchar', { name: 'email', unique: true, length: 50 })
   email: string;
-  @Column()
+  @Column('int', { name: 'age' })
   age: number;
-  @Column()
+  @Column('varchar', { name: 'password', length: 200, select: false })
   password: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
+  @DeleteDateColumn()
+  deletedAt: Date;
 }

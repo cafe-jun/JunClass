@@ -1,8 +1,8 @@
 import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { Users } from '../users/users.model';
-import { LocalAuthGurad } from 'src/common/gurad/local-auth.gurad';
+import { LocalAuthGurad } from '../../common/gurad/local-auth.gurad';
 
-@Controller()
+@Controller('auth')
 export class AuthController {
   @UseGuards(LocalAuthGurad)
   @Post('signin')

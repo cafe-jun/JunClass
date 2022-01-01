@@ -1,10 +1,10 @@
 import { CanActivate, ExecutionContext } from '@nestjs/common';
-import { Obserable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export class NotSignedInGurad implements CanActivate {
   canActivate(
     context: ExecutionContext
-  ): boolean | Promise<boolean> | Obserable {
+  ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
     return !request.isAuthenticated();
   }

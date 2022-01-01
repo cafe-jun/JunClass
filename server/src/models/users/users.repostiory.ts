@@ -8,9 +8,8 @@ import {
 @EntityRepository(Users)
 export class UserRepository extends Repository<Users> {
   async createUser(signInDto: SignInRequestDto): Promise<void> {
-    const { email, password } = signInDto;
-    const user = this.create({ email, password });
-
+    const { email, age, password } = signInDto;
+    const user = this.create({ email, age, password });
     try {
       await this.save(user);
     } catch (error) {

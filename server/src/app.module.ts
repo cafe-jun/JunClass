@@ -4,19 +4,19 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './models/users/users.module';
 import config from './config/typeorm.config';
-import { AuthModule } from './auth/auth.module';
 import { GatheringModule } from './models/gathering/gathering.module';
 import { ChatModule } from './models/chat/chat.module';
 import { AppConfigModule } from './config/app/config.module';
+import { AuthModule } from './models/auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),
     AppConfigModule,
     UserModule,
-    AuthModule,
     GatheringModule,
-    ChatModule
+    ChatModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService]

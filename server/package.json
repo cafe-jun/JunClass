@@ -42,6 +42,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "esm": "^3.2.25",
+    "joi": "^17.5.0",
     "mysql": "^2.14.1",
     "mysql2": "^2.3.3",
     "passport": "^0.4.1",
@@ -50,7 +51,7 @@
     "redis": "^3.1.2",
     "reflect-metadata": "^0.1.10",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0",
+    "rxjs": "^7.5.1",
     "socket.io-redis": "^6.1.1",
     "typeorm": "0.2.41",
     "uuid": "^8.3.2"

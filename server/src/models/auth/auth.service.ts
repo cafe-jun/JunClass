@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from '../users/users.repostiory';
+import { Users } from '../../models/users/users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import bcrypt from 'bcrypt';
-import { JwtService } from '@nestjs/jwt';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(UserRepository) private userRepository: UserRepository
+    @InjectRepository(Users) private userRepository: Repository<Users>
   ) {}
 
   async validateUser(email: string, password: string) {
