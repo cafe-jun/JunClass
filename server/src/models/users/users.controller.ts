@@ -9,24 +9,24 @@ import {
   ParseIntPipe,
   Put
 } from '@nestjs/common';
-import { UserService } from './user.service';
-import { User } from './user.entity';
-import { SignInDto } from './dto/signin.dto';
+import { UserService } from './users.service';
+import { Users } from './users.entity';
+import { SignInRequestDto } from './dto/signin.request.dto';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Get('/')
-  getAllUsers(): Promise<User[]> {
+  getAllUsers(): Promise<Users[]> {
     return this.userService.getAllUser();
   }
   @Get('/:id')
-  getUserById(@Param('id', ParseIntPipe) id): Promise<User> {
+  getUserById(@Param('id', ParseIntPipe) id): Promise<Users> {
     return this.userService.getUserById(id);
   }
   @Post('/')
-  createUser(@Body() signInDto: SignInDto): Promise<User> {
+  createUser(@Body() signInDto: SignInRequestDto): Promise<Users> {
     return this.userService.createUser(signInDto);
   }
   @Delete('/:id') // 숫자일경우  ParseIntPipe
@@ -36,9 +36,8 @@ export class UserController {
   @Put('/:id')
   updateUser(
     @Param('id', ParseIntPipe) id,
-    @Body('age') age: number,
-    @Body('name') name: string
-  ): Promise<User> {
-    return this.userService.updateUser(id, name, age);
+    @Body('email') email: string
+  ): Promise<Users> {
+    return this.userService.updateUser(id, email);
   }
 }

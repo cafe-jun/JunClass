@@ -6,13 +6,13 @@ import {
   Unique
 } from 'typeorm';
 
-@Entity('User')
-@Unique(['name'])
-export class User extends BaseEntity {
+@Entity('Users')
+@Unique(['email'])
+export class Users extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  name: string;
+  email: string;
   @Column()
   age: number;
   @Column()

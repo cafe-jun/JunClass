@@ -1,15 +1,15 @@
 import { Repository, EntityRepository } from 'typeorm';
-import { User } from './user.entity';
-import { SignInDto } from './dto/signin.dto';
+import { Users } from './users.entity';
+import { SignInRequestDto } from './dto/signin.request.dto';
 import {
   ConflictException,
   InternalServerErrorException
 } from '@nestjs/common';
-@EntityRepository(User)
-export class UserRepository extends Repository<User> {
-  async createUser(signInDto: SignInDto): Promise<void> {
-    const { name, password } = signInDto;
-    const user = this.create({ name, password });
+@EntityRepository(Users)
+export class UserRepository extends Repository<Users> {
+  async createUser(signInDto: SignInRequestDto): Promise<void> {
+    const { email, password } = signInDto;
+    const user = this.create({ email, password });
 
     try {
       await this.save(user);

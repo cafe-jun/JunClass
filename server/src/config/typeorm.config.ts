@@ -1,5 +1,5 @@
 import path from 'path';
-import { User } from '../models/user/user.entity';
+import { Users } from '../models/users/users.entity';
 import { Gathering } from '../models/gathering/gathering.entity';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 // import * as config from 'config';
@@ -13,7 +13,7 @@ const config: MysqlConnectionOptions = {
   password: 'Jsshin2440!@',
   database: 'JunClass',
   entities: [
-    User,
+    Users,
     Gathering
     // path.join(path.resolve(__dirname, '../../dist/src/**/*.entity{.ts,.js}'))
   ], //[User, Gathering],

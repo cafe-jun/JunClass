@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './models/user/user.module';
+import { UserModule } from './models/users/users.module';
 import config from './config/typeorm.config';
 import { AuthModule } from './auth/auth.module';
 import { GatheringModule } from './models/gathering/gathering.module';
