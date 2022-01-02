@@ -9,7 +9,6 @@ import { ChatModule } from './models/chat/chat.module';
 import { AppConfigModule } from './config/app/config.module';
 import { AuthModule } from './models/auth/auth.module';
 import { RedisClient } from 'redis';
-import passport from 'passport';
 import session from 'express-session';
 import { RedisModule, REDIS } from './providers/redis';
 import RedisStore from 'connect-redis';

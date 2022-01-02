@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@nestjs/swagger": "^5.1.5",
     "@types/express-session": "^1.17.4",
-    "express-session": "^1.17.2"
+    "express-session": "^1.17.2",
+    "swagger-ui-express": "^4.3.0"
   }
 }

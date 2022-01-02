@@ -1,11 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 // import { RedisIoAdapter } from './adapters/redis.adapter';
+import { SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppConfigService } from './config/app/config.service';
 import passport from 'passport';
-// import session from 'express-session';
-// import * as RedisStore from 'connect-redis';
+import { BaseAPIDocumentation } from './common/swagger/base.document';
+
 declare const module: any;
 
 async function bootstrap() {
@@ -15,21 +16,11 @@ async function bootstrap() {
   // const configService = app.get(ConfigService);
   // const port = configService.get('PORT');
   // app.useWebSocketAdapter(new RedisIoAdapter(app));
-  // app.use(
-  //   session({
-  //     store: new RedisStore(session)({ client: '', logErrors: true }),
-  //     resave: false,
-  //     saveUninitialized: false,
-  //     secret: appConfig.secret_cookie,
-  //     cookie: {
-  //       httpOnly: true,
-  //       maxAge: 60000
-  //     }
-  //   })
-  // );
   app.use(passport.initialize());
   app.use(passport.session());
-
+  const documentOption = new BaseAPIDocumentation().initializeOptions();
+  const document = SwaggerModule.createDocument(app, documentOption);
+  SwaggerModule.setup('v1/docs', app, document);
   await app.listen(appConfig.port);
 
   if (module.hot) {

@@ -9,4 +9,8 @@ export class AuthController {
   signIn(@Body() user: Users): Users | boolean {
     return user || false;
   }
+  @Post('signup')
+  signUp(@Body() user: Users): Promise<void> {
+    return;
+  }
 }

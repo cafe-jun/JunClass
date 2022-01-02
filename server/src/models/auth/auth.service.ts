@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Body } from '@nestjs/common';
 import { Users } from '../../models/users/users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import bcrypt from 'bcrypt';
@@ -25,5 +25,8 @@ export class AuthService {
       return userWithoutPassword;
     }
     return null;
+  }
+  async signUp(@Body() user: Users): Promise<Users> {
+    return user;
   }
 }
