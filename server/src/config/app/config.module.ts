@@ -13,7 +13,8 @@ import * as Joi from 'joi';
           .valid('development', 'production', 'test', 'provision')
           .default('development'),
         APP_URL: Joi.string().default('http://localhost:3095'),
-        APP_PORT: Joi.number().default(3095)
+        APP_PORT: Joi.number().default(3095),
+        APP_SECRET_COOKIE: Joi.string().default('JunSeok')
       })
     })
   ],

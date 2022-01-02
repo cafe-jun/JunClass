@@ -17,4 +17,7 @@ export class AppConfigService {
   get port(): number {
     return this.configService.get('app.port');
   }
+  get secret_cookie(): string {
+    return this.configService.get('app.secret_cookie');
+  }
 }
