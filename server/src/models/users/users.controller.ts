@@ -12,7 +12,7 @@ import {
 import { UserService } from './users.service';
 import { Users } from './users.entity';
 import { SignInRequestDto } from './dto/signin.request.dto';
-import { ApiTags, ApiOperation, ApiCookieAuth, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('USERS')
 @Controller('user')
@@ -24,8 +24,11 @@ export class UserController {
   getAllUsers(): Promise<Users[]> {
     return this.userService.getAllUser();
   }
-  @Get('/:id')
   @ApiOperation({ summary: '유저 디테일 정보' })
+  @ApiResponse({ status: 201, description: 'APi Test1' })
+  @ApiResponse({ status: 202, description: 'APi Test2' })
+  @ApiResponse({ status: 203, description: 'APi Test3' })
+  @Get('/:id')
   getUserById(@Param('id', ParseIntPipe) id): Promise<Users> {
     return this.userService.getUserById(id);
   }

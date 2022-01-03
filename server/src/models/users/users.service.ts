@@ -23,7 +23,7 @@ export class UserService {
       age,
       password: hashpassword
     });
-    await this.userRepository.save(user);
+    // await this.userRepository.save(user);
     return user;
   }
 

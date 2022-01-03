@@ -16,14 +16,21 @@ export class GatheringService {
     return this.gatheringRepository.find();
   }
   async createGathering(createGatDto: CreateGatheringDto): Promise<Gathering> {
-    const { thumbnail, title, type } = createGatDto;
-    const gathering = await this.gatheringRepository.create({
+    const { thumbnail, title, type, ownerUserId } = createGatDto;
+    console.log(ownerUserId);
+    const gathering = new Gathering();
+    gathering.OwnerUserId = ownerUserId;
+    gathering.title = title;
+    gathering.thumbnail = thumbnail;
+    console.log(gathering);
+    const saveGathering = await this.gatheringRepository.save({
       thumbnail,
       title,
-      type
+      type,
+      ownerUserId
     });
-    await this.gatheringRepository.save(gathering);
-    return gathering;
+    // await this.gatheringRepository.save(gathering);
+    return saveGathering;
   }
 
   async getGatheringById(id: number): Promise<Gathering> {
