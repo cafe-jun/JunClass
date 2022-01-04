@@ -15,6 +15,8 @@ import { GatheringService } from './gathering.service';
 import { CreateGatheringDto } from './dto/create-gathering';
 import { GatheringTypeValidation } from '../../common/pipe/gathering-type-validation';
 import { GatheringType } from './gathering-type.enum';
+import { GetUser } from 'src/common/decorators/get-user.decorators';
+import { Users } from '../users/users.entity';
 @Controller('gathering')
 export class GatheringController {
   constructor(private gatheringService: GatheringService) {}
@@ -29,9 +31,10 @@ export class GatheringController {
   @Post('/')
   @UsePipes(ValidationPipe)
   createGathering(
+    @GetUser() user: Users,
     @Body() createGatheringDto: CreateGatheringDto
   ): Promise<Gathering> {
-    return this.gatheringService.createGathering(createGatheringDto);
+    return this.gatheringService.createGathering(createGatheringDto, user);
   }
   //   @Put('/:id')
   //   updateGathering(@Param(id)): Promise<void> {

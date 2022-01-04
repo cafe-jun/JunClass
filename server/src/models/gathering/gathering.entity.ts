@@ -34,12 +34,6 @@ export class Gathering extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @Column('varchar', { name: 'ownerUserId', nullable: true })
-  OwnerUserId: string | null;
-
-  @JoinColumn([{ name: 'ownerUserId', referencedColumnName: 'id' }])
-  User: Users;
-
   @ManyToOne(() => Users, (users) => users.gathering)
   users: Users[];
 }

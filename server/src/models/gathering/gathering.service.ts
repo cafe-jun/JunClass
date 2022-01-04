@@ -4,6 +4,7 @@ import { Gathering } from './gathering.entity';
 import { CreateGatheringDto } from './dto/create-gathering';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GatheringType } from './gathering-type.enum';
+import { Users } from '../users/users.entity';
 @Injectable()
 export class GatheringService {
   constructor(
@@ -15,21 +16,21 @@ export class GatheringService {
   async getAllGathering(): Promise<Gathering[]> {
     return this.gatheringRepository.find();
   }
-  async createGathering(createGatDto: CreateGatheringDto): Promise<Gathering> {
-    const { thumbnail, title, type, ownerUserId } = createGatDto;
-    console.log(ownerUserId);
+  async createGathering(
+    createGatDto: CreateGatheringDto,
+    user: Users
+  ): Promise<Gathering> {
+    const { thumbnail, title, type } = createGatDto;
     const gathering = new Gathering();
-    gathering.OwnerUserId = ownerUserId;
     gathering.title = title;
     gathering.thumbnail = thumbnail;
-    console.log(gathering);
+    console.log(`gathering user :: ${JSON.stringify(user)}`);
     const saveGathering = await this.gatheringRepository.save({
       thumbnail,
       title,
       type,
-      ownerUserId
+      user
     });
-    // await this.gatheringRepository.save(gathering);
     return saveGathering;
   }
 

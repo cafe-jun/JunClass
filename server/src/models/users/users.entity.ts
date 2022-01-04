@@ -29,6 +29,6 @@ export class Users extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @OneToMany(() => Gathering, (gathering) => gathering.ownerUser)
+  @OneToMany(() => Gathering, (gathering) => gathering.users)
   gathering: Gathering[];
 }
