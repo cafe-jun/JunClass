@@ -31,7 +31,7 @@ export class GatheringController {
   @Post('/')
   @UsePipes(ValidationPipe)
   createGathering(
-    @GetUser() user: Users,
+    user: string,
     @Body() createGatheringDto: CreateGatheringDto
   ): Promise<Gathering> {
     return this.gatheringService.createGathering(createGatheringDto, user);

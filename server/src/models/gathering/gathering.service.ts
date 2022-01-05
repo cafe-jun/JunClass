@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { GatheringRepository } from './gathering.repostiory';
 import { Gathering } from './gathering.entity';
 import { CreateGatheringDto } from './dto/create-gathering';
@@ -11,26 +11,19 @@ export class GatheringService {
     @InjectRepository(GatheringRepository)
     private gatheringRepository: GatheringRepository
   ) {}
-  // private users: Users[] = [];
-
+  private logger = new Logger('GatheringService');
   async getAllGathering(): Promise<Gathering[]> {
     return this.gatheringRepository.find();
   }
   async createGathering(
     createGatDto: CreateGatheringDto,
-    user: Users
+    user: string
   ): Promise<Gathering> {
-    const { thumbnail, title, type } = createGatDto;
-    const gathering = new Gathering();
-    gathering.title = title;
-    gathering.thumbnail = thumbnail;
-    console.log(`gathering user :: ${JSON.stringify(user)}`);
-    const saveGathering = await this.gatheringRepository.save({
-      thumbnail,
-      title,
-      type,
+    this.logger.log(`gathering user :: ${JSON.stringify(user)}`);
+    const saveGathering = await this.gatheringRepository.createGathering(
+      createGatDto,
       user
-    });
+    );
     return saveGathering;
   }
 

@@ -35,5 +35,5 @@ export class Gathering extends BaseEntity {
   deletedAt: Date;
 
   @ManyToOne(() => Users, (users) => users.gathering)
-  users: Users[];
+  users: Users;
 }
