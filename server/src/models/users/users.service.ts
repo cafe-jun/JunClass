@@ -1,15 +1,22 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  Logger,
+  HttpException,
+  HttpStatus
+} from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SignInRequestDto } from './dto/signin.request.dto';
 import { UserRepository } from './users.repostiory';
-import { Users } from './users.entity';
+import { Users } from './users.entities';
 import bcrypt from 'bcrypt';
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserRepository) private userRepository: UserRepository
   ) {}
+  private logger = new Logger('UserService');
 
   async getAllUser(): Promise<Users[]> {
     return this.userRepository.find();
@@ -33,8 +40,17 @@ export class UserService {
     return found;
   }
 
-  async deleteUser(id: number): Promise<void> {
-    const result = await this.userRepository.delete(id);
+  async deleteUser(id: string): Promise<void> {
+    const result = await this.userRepository.delete(id).catch((err) => {
+      throw new HttpException(
+        {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: err.message
+        },
+        HttpStatus.BAD_REQUEST
+      );
+    });
+    this.logger.debug(JSON.stringify(result));
     if (result.affected === 0) {
       throw new NotFoundException(`Can't find Board with id ${id}`);
     }

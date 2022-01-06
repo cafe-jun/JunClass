@@ -10,7 +10,7 @@ import {
   Put
 } from '@nestjs/common';
 import { UserService } from './users.service';
-import { Users } from './users.entity';
+import { Users } from './users.entities';
 import { SignInRequestDto } from './dto/signin.request.dto';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 
@@ -38,8 +38,9 @@ export class UserController {
   }
   @ApiOperation({ summary: '유저 삭제' })
   @Delete('/:id') // 숫자일경우  ParseIntPipe
-  destroyUser(@Param('id', ParseIntPipe) id): void {
-    this.userService.deleteUser(id);
+  destroyUser(@Param('id') id: string): any {
+    const result = this.userService.deleteUser(id);
+    return result;
   }
   @ApiOperation({ summary: '유저 정보 수정' })
   @Put('/:id')

@@ -9,7 +9,7 @@ import {
   DeleteDateColumn,
   OneToMany
 } from 'typeorm';
-import { Gathering } from '../gathering/gathering.entity';
+import { Gathering } from '../gathering/gathering.entities';
 
 @Entity('Users')
 export class Users extends BaseEntity {
@@ -26,7 +26,7 @@ export class Users extends BaseEntity {
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
-  @DeleteDateColumn()
+  @DeleteDateColumn({ select: false })
   deletedAt: Date;
 
   @OneToMany(() => Gathering, (gathering) => gathering.users)

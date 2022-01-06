@@ -1,5 +1,5 @@
 import { Injectable, Body } from '@nestjs/common';
-import { Users } from '../../models/users/users.entity';
+import { Users } from '../users/users.entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';

@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { AppModule } from './app.module';
 // import { RedisIoAdapter } from './adapters/redis.adapter';
 import { SwaggerModule } from '@nestjs/swagger';
@@ -6,6 +6,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppConfigService } from './config/app/config.service';
 import passport from 'passport';
 import { BaseAPIDocumentation } from './common/swagger/base.document';
+import { AllExceptionsFilter } from './exceptions/all-exception.filter';
 
 declare const module: any;
 
@@ -20,6 +21,8 @@ async function bootstrap() {
   app.use(passport.session());
   const documentOption = new BaseAPIDocumentation().initializeOptions();
   const document = SwaggerModule.createDocument(app, documentOption);
+  const { httpAdapter } = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
   SwaggerModule.setup('v1/docs', app, document);
   await app.listen(appConfig.port);
 

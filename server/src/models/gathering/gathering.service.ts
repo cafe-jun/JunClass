@@ -1,10 +1,11 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { GatheringRepository } from './gathering.repostiory';
-import { Gathering } from './gathering.entity';
+import { Gathering } from './gathering.entities';
 import { CreateGatheringDto } from './dto/create-gathering';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GatheringType } from './gathering-type.enum';
-import { Users } from '../users/users.entity';
+import { Users } from '../users/users.entities';
+import { throws } from 'assert';
 @Injectable()
 export class GatheringService {
   constructor(
@@ -17,12 +18,12 @@ export class GatheringService {
   }
   async createGathering(
     createGatDto: CreateGatheringDto,
-    user: string
+    userId: string
   ): Promise<Gathering> {
-    this.logger.log(`gathering user :: ${JSON.stringify(user)}`);
+    this.logger.log(`gathering user :: ${JSON.stringify(userId)}`);
     const saveGathering = await this.gatheringRepository.createGathering(
       createGatDto,
-      user
+      userId
     );
     return saveGathering;
   }
@@ -33,7 +34,7 @@ export class GatheringService {
     return found;
   }
 
-  async deleteGathering(id: number): Promise<void> {
+  async deleteGathering(id: string): Promise<void> {
     const result = await this.gatheringRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Can't find Board with id ${id}`);

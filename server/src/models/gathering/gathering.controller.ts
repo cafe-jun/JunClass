@@ -8,15 +8,17 @@ import {
   Body,
   UsePipes,
   ValidationPipe,
-  Patch
+  Patch,
+  UseFilters
 } from '@nestjs/common';
-import { Gathering } from './gathering.entity';
+import { Gathering } from './gathering.entities';
 import { GatheringService } from './gathering.service';
 import { CreateGatheringDto } from './dto/create-gathering';
 import { GatheringTypeValidation } from '../../common/pipe/gathering-type-validation';
 import { GatheringType } from './gathering-type.enum';
 import { GetUser } from 'src/common/decorators/get-user.decorators';
-import { Users } from '../users/users.entity';
+import { Users } from '../users/users.entities';
+import { HttpExceptionFilter } from '../../exceptions/http-exception.filter';
 @Controller('gathering')
 export class GatheringController {
   constructor(private gatheringService: GatheringService) {}
@@ -31,10 +33,10 @@ export class GatheringController {
   @Post('/')
   @UsePipes(ValidationPipe)
   createGathering(
-    user: string,
+    @Body('userId') userId: string,
     @Body() createGatheringDto: CreateGatheringDto
   ): Promise<Gathering> {
-    return this.gatheringService.createGathering(createGatheringDto, user);
+    return this.gatheringService.createGathering(createGatheringDto, userId);
   }
   //   @Put('/:id')
   //   updateGathering(@Param(id)): Promise<void> {
@@ -50,7 +52,8 @@ export class GatheringController {
     return;
   }
   @Delete('/:id')
-  deleteGathering(@Param('id') id: number): Promise<void> {
+  @UseFilters(new HttpExceptionFilter())
+  deleteGathering(@Param('id') id: string): Promise<void> {
     return this.gatheringService.deleteGathering(id);
   }
 }

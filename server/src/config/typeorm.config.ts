@@ -1,6 +1,6 @@
 import path from 'path';
-import { Users } from '../models/users/users.entity';
-import { Gathering } from '../models/gathering/gathering.entity';
+import { Users } from '../models/users/users.entities';
+import { Gathering } from '../models/gathering/gathering.entities';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 // import * as config from 'config';
 // const dbConfig = config.get('db');

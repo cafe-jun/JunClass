@@ -7,7 +7,7 @@ import { LocalStrategy } from 'src/common/gurad/local.strategy';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { LocalSerializer } from '../../common/gurad/local.serializer';
-import { Users } from '../users/users.entity';
+import { Users } from '../users/users.entities';
 
 @Module({
   imports: [

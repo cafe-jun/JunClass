@@ -9,7 +9,7 @@ import {
   DeleteDateColumn,
   JoinColumn
 } from 'typeorm';
-import { Users } from '../users/users.entity';
+import { Users } from '../users/users.entities';
 
 @Entity({ name: 'Gathering' })
 export class Gathering extends BaseEntity {
@@ -31,9 +31,11 @@ export class Gathering extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ select: false })
   deletedAt: Date;
 
-  @ManyToOne(() => Users, (users) => users.gathering)
+  @ManyToOne(() => Users, (users) => users.gathering, {
+    onDelete: 'RESTRICT'
+  })
   users: Users;
 }

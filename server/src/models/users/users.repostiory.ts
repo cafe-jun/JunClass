@@ -1,5 +1,5 @@
 import { Repository, EntityRepository } from 'typeorm';
-import { Users } from './users.entity';
+import { Users } from './users.entities';
 import { SignInRequestDto } from './dto/signin.request.dto';
 import {
   ConflictException,
