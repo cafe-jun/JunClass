@@ -46,22 +46,22 @@ export class ChatGateway
     ChatGateway.logger.debug(`${client.id} is disconnected...`);
   }
 
-  // @SubscribeMessage('pub')
-  // async handlePubMessage(
-  //   @ConnectedSocket() socket: Socket,
-  //   @MessageBody() data: string
-  // ): Promise<string> {
-  //   // await pubClient.publish('test', 'test');
-  //   return 'hello';
-  // }
+  @SubscribeMessage('pub')
+  async handlePubMessage(
+    @ConnectedSocket() socket: Socket,
+    @MessageBody() data: string
+  ): Promise<string> {
+    // await pubClient.publish('test', 'test');
+    return 'hello';
+  }
 
-  // @SubscribeMessage('sub')
-  // async handleMessage(
-  //   @ConnectedSocket() socket: Socket,
-  //   @MessageBody() data: string
-  // ): Promise<string> {
-  //   ChatGateway.logger.debug(data, socket.id);
+  @SubscribeMessage('sub')
+  async handleMessage(
+    @ConnectedSocket() socket: Socket,
+    @MessageBody() data: string
+  ): Promise<string> {
+    ChatGateway.logger.debug(data, socket.id);
 
-  //   return 'hello';
-  // }
+    return 'hello';
+  }
 }
