@@ -7,14 +7,8 @@ import config from './config/typeorm.config';
 import { GatheringModule } from './models/gathering/gathering.module';
 import { ChatModule } from './models/chat/chat.module';
 import { AppConfigModule } from './config/app/config.module';
-import { RedisConfigModule } from './config/database/redis/config.module';
 import { AuthModule } from './models/auth/auth.module';
-import { RedisProviderModule } from './providers/redis/provider.module';
-// import { RedisClient } from 'redis';
-// import session from 'express-session';
-// import { RedisModule, REDIS } from './providers/redis';
-// import RedisStore from 'connect-redis';
-
+import { RedisProviderModule } from './providers/cache/redis/provider.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),

@@ -33,11 +33,11 @@ export class ChatGateway
       if (!this.connectedSockets['test']) this.connectedSockets['test'] = [];
       this.connectedSockets['test'].push(client.id);
       ChatGateway.logger.debug(this.connectedSockets);
-      this.chatService.subscribeChannel('channel:ssu-repl');
-      this.chatService.publishAsync(
-        'channel:ssu-repl',
-        `${client.id} connected socket join`
-      );
+      // this.chatService.subscribeChannel('channel:ssu-repl');
+      // this.chatService.publishAsync(
+      //   'channel:ssu-repl',
+      //   `${client.id} connected socket join`
+      // );
     } catch (error) {
       console.log(error);
     }
