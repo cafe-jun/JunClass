@@ -7,45 +7,48 @@ import config from './config/typeorm.config';
 import { GatheringModule } from './models/gathering/gathering.module';
 import { ChatModule } from './models/chat/chat.module';
 import { AppConfigModule } from './config/app/config.module';
+import { RedisConfigModule } from './config/database/redis/config.module';
 import { AuthModule } from './models/auth/auth.module';
-import { RedisClient } from 'redis';
-import session from 'express-session';
-import { RedisModule, REDIS } from './providers/redis';
-import RedisStore from 'connect-redis';
+import { RedisProviderModule } from './providers/redis/provider.module';
+// import { RedisClient } from 'redis';
+// import session from 'express-session';
+// import { RedisModule, REDIS } from './providers/redis';
+// import RedisStore from 'connect-redis';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),
+    RedisProviderModule,
     AppConfigModule,
     UserModule,
     GatheringModule,
     ChatModule,
-    AuthModule,
-    RedisModule
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService]
 })
-export class AppModule implements NestModule {
-  constructor(@Inject(REDIS) private readonly redisClient: RedisClient) {}
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(
-        session({
-          store: new (RedisStore(session))({
-            client: this.redisClient,
-            logErrors: true
-          }),
-          saveUninitialized: false,
-          secret: 'JunClass',
-          resave: false,
-          cookie: {
-            sameSite: true,
-            httpOnly: false,
-            maxAge: 60000
-          }
-        })
-      )
-      .forRoutes('*');
-  }
-}
+export class AppModule {}
+/*implements NestModule {*/
+// constructor(@Inject(REDIS) private readonly redisClient: RedisClient) {}
+// configure(consumer: MiddlewareConsumer) {
+//   consumer
+//     .apply(
+//       session({
+//         store: new (RedisStore(session))({
+//           client: this.redisClient,
+//           logErrors: true
+//         }),
+//         saveUninitialized: false,
+//         secret: 'JunClass',
+//         resave: false,
+//         cookie: {
+//           sameSite: true,
+//           httpOnly: false,
+//           maxAge: 60000
+//         }
+//       })
+//     )
+//     .forRoutes('*');
+// }
+//}
