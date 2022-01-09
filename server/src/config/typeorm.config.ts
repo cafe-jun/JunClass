@@ -2,6 +2,7 @@ import path from 'path';
 import { Users } from '../models/users/users.entities';
 import { Gathering } from '../models/gathering/gathering.entities';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
+import { Chat } from '../models/chat/chat.entities';
 // import * as config from 'config';
 // const dbConfig = config.get('db');
 
@@ -14,7 +15,8 @@ const config: MysqlConnectionOptions = {
   database: 'JunClass',
   entities: [
     Users,
-    Gathering
+    Gathering,
+    Chat
     // path.join(path.resolve(__dirname, '../../dist/src/**/*.entity{.ts,.js}'))
   ], //[User, Gathering],
   synchronize: false,

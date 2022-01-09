@@ -12,37 +12,45 @@ import { Server, Socket } from 'socket.io';
 import { Logger } from '@nestjs/common';
 import { ChatService } from './chat.service';
 
-@WebSocketGateway({ namespace: '/chat' })
+@WebSocketGateway({ namespace: 'chat' })
 export class ChatGateway
   implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit
 {
-  private static readonly logger = new Logger(ChatGateway.name);
-  public connectedSockets: { [key: string]: any[] } = {};
+  @WebSocketServer()
+  private server: Server;
+
+  private logger = new Logger(ChatGateway.name);
 
   constructor(private chatService: ChatService) {}
 
-  // @SubscribeMessage('login')
-  // async handleLogin() {}
-
   afterInit() {
-    ChatGateway.logger.debug(`Socket Server Init Complete`);
+    this.logger.debug(`Socket Server Init Complete`);
   }
 
   handleConnection(client: Socket) {
-    try {
-      if (!this.connectedSockets['test']) this.connectedSockets['test'] = [];
-      this.connectedSockets['test'].push(client.id);
-      ChatGateway.logger.debug(this.connectedSockets);
-      // this.chatService.subscribeChannel('channel:ssu-repl');
-      // this.chatService.publishAsync(
-      //   'channel:ssu-repl',
-      //   `${client.id} connected socket join`
-      // );
-    } catch (error) {
-      console.log(error);
-    }
+    this.logger.debug(`connected sid ${client.id}`);
+    client.join('room1');
+    console.log(client.rooms);
+    this.server
+      .to(`${client.id}123`)
+      .emit('msgToServer', `HelloWorld sid :${client.id} `);
   }
   handleDisconnect(client: Socket) {
-    ChatGateway.logger.debug(`${client.id} is disconnected...`);
+    this.logger.debug(`${client.id} is disconnected...`);
+  }
+  @SubscribeMessage('chat')
+  async handleJoinRoom(
+    @ConnectedSocket() client: Socket,
+    @MessageBody()
+    payload: { senderId: string; receiverId: string; content: string }
+  ) {
+    const { senderId, receiverId, content } = payload;
+    await this.chatService.addMessage(senderId, receiverId, content);
+    this.server.emit('msgToServer', payload);
+  }
+  @SubscribeMessage('message')
+  async handleRoomList(@ConnectedSocket() client: Socket) {
+    const messages = await this.chatService.getAllMessage();
+    this.server.emit('msgToServer', messages);
   }
 }

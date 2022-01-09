@@ -8,15 +8,17 @@ import { GatheringModule } from './models/gathering/gathering.module';
 import { ChatModule } from './models/chat/chat.module';
 import { AppConfigModule } from './config/app/config.module';
 import { AuthModule } from './models/auth/auth.module';
-import { RedisProviderModule } from './providers/cache/redis/provider.module';
+import { EventModule } from './models/event/event.module';
+// import { RedisProviderModule } from './providers/cache/redis/provider.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),
-    RedisProviderModule,
+    // RedisProviderModule,
     AppConfigModule,
     UserModule,
     GatheringModule,
     ChatModule,
+    EventModule,
     AuthModule
   ],
   controllers: [AppController],
