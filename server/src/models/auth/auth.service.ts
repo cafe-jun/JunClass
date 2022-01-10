@@ -5,24 +5,24 @@ import bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { JwtService } from '@nestjs/jwt';
-import { UserRepository } from '../users/users.repostiory';
+import { UsersRepository } from '../users/users.repostiory';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(Users) private userRepository: UserRepository,
+    @InjectRepository(Users) private usersRepository: UsersRepository,
     private jwtService: JwtService
   ) {}
 
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    return await this.userRepository.createUser(authCredentialsDto);
+    return await this.usersRepository.createUser(authCredentialsDto);
   }
 
   async signIn(
     authCredentialsDto: AuthCredentialsDto
   ): Promise<{ accessToken: string }> {
     const { email, password } = authCredentialsDto;
-    const user = await this.userRepository.findOne({ email });
+    const user = await this.usersRepository.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload = { email };
       const accessToken = await this.jwtService.sign(payload);
@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string) {
-    const user = await this.userRepository.findOne({
+    const user = await this.usersRepository.findOne({
       where: { email },
       select: ['id', 'email', 'password']
     });

@@ -8,13 +8,13 @@ import {
 import { v4 as uuid } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SignInRequestDto } from './dto/signin.request.dto';
-import { UserRepository } from './users.repostiory';
+import { UsersRepository } from './users.repostiory';
 import { Users } from './users.entities';
 import bcrypt from 'bcrypt';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(UserRepository) private userRepository: UserRepository
+    @InjectRepository(UsersRepository) private userRepository: UsersRepository
   ) {}
   private logger = new Logger('UserService');
 

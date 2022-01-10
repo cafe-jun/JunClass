@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { AuthCredentialsDto } from '../auth/dto/auth-credential.dto';
 @EntityRepository(Users)
-export class UserRepository extends Repository<Users> {
+export class UsersRepository extends Repository<Users> {
   async createUser(authCredentialsDto: AuthCredentialsDto): Promise<void> {
     const { email, password } = authCredentialsDto;
     const salt = await bcrypt.genSalt();
