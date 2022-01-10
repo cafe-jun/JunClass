@@ -1,16 +1,30 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  ValidationPipe
+} from '@nestjs/common';
 import { Users } from '../users/users.model';
 import { LocalAuthGurad } from '../../common/gurad/local-auth.gurad';
+import { AuthCredentialsDto } from './dto/auth-credential.dto';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  @UseGuards(LocalAuthGurad)
+  constructor(private authService: AuthService) {}
+  // @UseGuards(LocalAuthGurad)
+
   @Post('signin')
-  signIn(@Body() user: Users): Users | boolean {
-    return user || false;
+  signIn(
+    @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto
+  ): Promise<{ accessToken: string }> {
+    return this.authService.signIn(authCredentialsDto);
   }
-  @Post('signup')
-  signUp(@Body() user: Users): Promise<void> {
-    return;
+  @Post('/signup')
+  signUp(
+    @Body(ValidationPipe) authcredentialsDto: AuthCredentialsDto
+  ): Promise<void> {
+    return this.authService.signUp(authcredentialsDto);
   }
 }

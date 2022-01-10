@@ -3,12 +3,32 @@ import { Users } from '../users/users.entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
+import { AuthCredentialsDto } from './dto/auth-credential.dto';
+import { JwtService } from '@nestjs/jwt';
+import { UserRepository } from '../users/users.repostiory';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(Users) private userRepository: Repository<Users>
+    @InjectRepository(Users) private userRepository: UserRepository,
+    private jwtService: JwtService
   ) {}
+
+  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+    return await this.userRepository.createUser(authCredentialsDto);
+  }
+
+  async signIn(
+    authCredentialsDto: AuthCredentialsDto
+  ): Promise<{ accessToken: string }> {
+    const { email, password } = authCredentialsDto;
+    const user = await this.userRepository.findOne({ email });
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const payload = { email };
+      const accessToken = await this.jwtService.sign(payload);
+      return { accessToken };
+    }
+  }
 
   async validateUser(email: string, password: string) {
     const user = await this.userRepository.findOne({
@@ -26,7 +46,7 @@ export class AuthService {
     }
     return null;
   }
-  async signUp(@Body() user: Users): Promise<Users> {
-    return user;
-  }
+  // async signUp(@Body() user: Users): Promise<Users> {
+  //   return user;
+  // }
 }

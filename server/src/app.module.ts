@@ -25,26 +25,27 @@ import { EventModule } from './models/event/event.module';
   providers: [AppService]
 })
 export class AppModule {}
-/*implements NestModule {*/
-// constructor(@Inject(REDIS) private readonly redisClient: RedisClient) {}
-// configure(consumer: MiddlewareConsumer) {
-//   consumer
-//     .apply(
-//       session({
-//         store: new (RedisStore(session))({
-//           client: this.redisClient,
-//           logErrors: true
-//         }),
-//         saveUninitialized: false,
-//         secret: 'JunClass',
-//         resave: false,
-//         cookie: {
-//           sameSite: true,
-//           httpOnly: false,
-//           maxAge: 60000
-//         }
-//       })
-//     )
-//     .forRoutes('*');
+/*implements NestModule {
+  // constructor(@Inject(REDIS) private readonly redisClient: RedisClient) {}
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer
+  //     .apply(
+  //       session({
+  //         store: new (RedisStore(session))({
+  //           client: this.redisClient,
+  //           logErrors: true
+  //         }),
+  //         saveUninitialized: false,
+  //         secret: 'JunClass',
+  //         resave: false,
+  //         cookie: {
+  //           sameSite: true,
+  //           httpOnly: false,
+  //           maxAge: 60000
+  //         }
+  //       })
+  //     )
+  //     .forRoutes('*');
+  // }
 // }
-//}
+*/
