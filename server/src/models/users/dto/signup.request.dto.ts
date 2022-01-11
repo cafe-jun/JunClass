@@ -1,7 +1,7 @@
 import { IsEmail, IsString, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class SignInRequestDto {
+export class SignUpRequestDto {
   @IsEmail()
   @ApiProperty({
     example: 'tb25271@gmail.com',

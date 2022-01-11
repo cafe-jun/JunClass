@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
-import { SignInRequestDto } from './dto/signin.request.dto';
+import { SignUpRequestDto } from './dto/signup.request.dto';
 import { UsersRepository } from './users.repostiory';
 import { Users } from './users.entities';
 import bcrypt from 'bcrypt';
@@ -21,7 +21,7 @@ export class UserService {
   async getAllUser(): Promise<Users[]> {
     return this.userRepository.find();
   }
-  async createUser(signInDto: SignInRequestDto): Promise<Users> {
+  async createUser(signInDto: SignUpRequestDto): Promise<Users> {
     const { email, age, password } = signInDto;
     const hashpassword = await bcrypt.hash(password, 12);
     const user = await this.userRepository.save({

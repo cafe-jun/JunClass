@@ -23,9 +23,9 @@ import { UsersRepository } from '../users/users.repostiory';
       }
     })
   ],
-  // controllers: [AuthController]
-  providers: [AuthService, JwtService]
-  // exports: [JwtStrategy, PassportModule]
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+  exports: [JwtStrategy, PassportModule]
   //providers: [AuthService, JwtStrategy /* LocalStrategy, LocalSerializer*/]
 })
 export class AuthModule {}

@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './users.service';
 import { Users } from './users.entities';
-import { SignInRequestDto } from './dto/signin.request.dto';
+import { SignUpRequestDto } from './dto/signup.request.dto';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('USERS')
@@ -31,9 +31,9 @@ export class UserController {
     return this.userService.getUserById(id);
   }
   @Post('/')
-  @ApiBody({ type: SignInRequestDto })
+  @ApiBody({ type: SignUpRequestDto })
   @ApiOperation({ summary: '유저 생성' })
-  createUser(@Body() signInDto: SignInRequestDto): Promise<Users> {
+  createUser(@Body() signInDto: SignUpRequestDto): Promise<Users> {
     return this.userService.createUser(signInDto);
   }
   @ApiOperation({ summary: '유저 삭제' })

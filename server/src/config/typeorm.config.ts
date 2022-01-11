@@ -18,7 +18,7 @@ const config: MysqlConnectionOptions = {
     Gathering,
     Chat
     // path.join(path.resolve(__dirname, '../../dist/src/**/*.entity{.ts,.js}'))
-  ], //[User, Gathering],
+  ],
   synchronize: false,
   logging: true,
   migrations: [
