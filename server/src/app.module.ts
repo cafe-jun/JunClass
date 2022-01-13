@@ -9,9 +9,15 @@ import { ChatModule } from './models/chat/chat.module';
 import { AppConfigModule } from './config/app/config.module';
 import { AuthModule } from './models/auth/auth.module';
 import { EventModule } from './models/event/event.module';
+import { ConfigModule } from '@nestjs/config';
 // import { RedisProviderModule } from './providers/cache/redis/provider.module';
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath:
+        process.env.NODE_ENV === 'development' ? '.env' : '.env.production'
+    }),
     TypeOrmModule.forRoot(config),
     // RedisProviderModule,
     AppConfigModule,

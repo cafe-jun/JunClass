@@ -9,7 +9,7 @@ import { BaseAPIDocumentation } from './common/swagger/base.document';
 import { AllExceptionsFilter } from './exceptions/all-exception.filter';
 import { RedisIoAdapter } from './adapters/redis.adapter';
 import { Logger } from '@nestjs/common';
-
+import helmet from 'helmet';
 declare const module: any;
 
 async function bootstrap() {
@@ -21,13 +21,19 @@ async function bootstrap() {
   // app.useWebSocketAdapter(new RedisIoAdapter(app));
   // app.use(passport.initialize());
   // app.use(passport.session());
+  app.enableCors({
+    origin: ['http://localhost:3095'],
+    methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE']
+  });
   const documentOption = new BaseAPIDocumentation().initializeOptions();
   const document = SwaggerModule.createDocument(app, documentOption);
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
   app.useWebSocketAdapter(new RedisIoAdapter(app));
+  app.use(helmet());
   SwaggerModule.setup('v1/docs', app, document);
   logger.log(`Application${appConfig.port} Port  Running`);
+
   await app.listen(appConfig.port);
 
   if (module.hot) {
