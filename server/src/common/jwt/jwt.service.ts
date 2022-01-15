@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { string } from 'joi';
-
+import jwt from 'jsonwebtoken';
 @Injectable()
-export class JwtServiceCustom {
-  constructor(private jwtService: JwtService) {}
+export class JwtService {
+  async verify(token: string) {
+    jwt.verify(token, 'sdfsd');
+  }
 
   async sign(payload: string) {
-    this.jwtService.sign(string);
+    try {
+      await jwt.sign(payload, 'test');
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

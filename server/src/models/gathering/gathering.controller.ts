@@ -9,7 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
   Patch,
-  UseFilters
+  UseFilters,
+  UseGuards
 } from '@nestjs/common';
 import { Gathering } from './gathering.entities';
 import { GatheringService } from './gathering.service';
@@ -19,6 +20,9 @@ import { GatheringType } from './gathering-type.enum';
 import { GetUser } from 'src/common/decorators/get-user.decorators';
 import { Users } from '../users/users.entities';
 import { HttpExceptionFilter } from '../../exceptions/http-exception.filter';
+import { AuthGurad } from '../../common/gurad/logged-In.gurad';
+
+@UseGuards(AuthGurad)
 @Controller('gathering')
 export class GatheringController {
   constructor(private gatheringService: GatheringService) {}
