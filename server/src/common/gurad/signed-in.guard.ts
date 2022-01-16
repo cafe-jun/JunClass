@@ -18,8 +18,10 @@ export class SignedInGurad implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const authorization = request.headers.authorization;
     if (!authorization) {
-      // request.isAuthenticated();
-      throw new HttpException('it is custom error', HttpStatus.FORBIDDEN);
+      throw new HttpException(
+        JSON.stringify({ message: 'it is test error', code: 4000 }),
+        HttpStatus.FORBIDDEN
+      );
     }
     return true;
   }
