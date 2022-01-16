@@ -1,12 +1,9 @@
 import { Injectable, Body, Logger } from '@nestjs/common';
-import { Users } from '../users/users.entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import bcrypt from 'bcrypt';
-import { Repository } from 'typeorm';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { JwtService } from '@nestjs/jwt';
 import { UsersRepository } from '../users/users.repostiory';
-import { UserService } from '../users/users.service';
 import { SignUpRequestDto } from '../users/dto/signup.request.dto';
 
 @Injectable()

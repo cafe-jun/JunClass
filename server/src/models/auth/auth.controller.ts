@@ -5,8 +5,7 @@ import {
   UseGuards,
   ValidationPipe
 } from '@nestjs/common';
-import { Users } from '../users/users.model';
-import { LocalAuthGurad } from '../../common/gurad/local-auth.gurad';
+
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { AuthService } from './auth.service';
 import { SignUpRequestDto } from '../users/dto/signup.request.dto';
@@ -14,7 +13,6 @@ import { SignUpRequestDto } from '../users/dto/signup.request.dto';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-  // @UseGuards(LocalAuthGurad)
 
   @Post('signin')
   signIn(

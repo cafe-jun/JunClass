@@ -20,9 +20,11 @@ import { GatheringType } from './gathering-type.enum';
 import { GetUser } from 'src/common/decorators/get-user.decorators';
 import { Users } from '../users/users.entities';
 import { HttpExceptionFilter } from '../../exceptions/http-exception.filter';
-import { AuthGurad } from '../../common/gurad/logged-In.gurad';
+// import { AuthGuard } from '@nestjs/passport';
+import { SignedInGurad } from '../../common/gurad/signed-in.guard';
 
-@UseGuards(AuthGurad)
+@UseGuards(SignedInGurad)
+@UseFilters(HttpExceptionFilter)
 @Controller('gathering')
 export class GatheringController {
   constructor(private gatheringService: GatheringService) {}

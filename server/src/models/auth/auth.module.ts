@@ -4,28 +4,22 @@ import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { Users } from '../users/users.entities';
-import { JwtStrategy } from '../../models/auth/jwt.strategy';
-import { LocalStrategy } from 'src/common/gurad/local.strategy';
-import { LocalSerializer } from '../../common/gurad/local.serializer';
+import { JwtStrategy } from './jwt.strategy';
 import { UsersRepository } from '../users/users.repostiory';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UsersRepository]),
-    PassportModule.register({
-      defaultStrategy: 'jwt'
-    }),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: {
         expiresIn: 60 * 60
       }
-    })
+    }),
+    TypeOrmModule.forFeature([UsersRepository])
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
   exports: [JwtStrategy, PassportModule]
-  //providers: [AuthService, JwtStrategy /* LocalStrategy, LocalSerializer*/]
 })
 export class AuthModule {}

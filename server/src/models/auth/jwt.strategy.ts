@@ -11,7 +11,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     @InjectRepository(UsersRepository) private usersRepository: UsersRepository
   ) {
     super({
-      secretOrKey: process.env.JWT_SECRET || 'JunSeok',
+      secretOrKey: process.env.JWT_SECRET,
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     });
   }
