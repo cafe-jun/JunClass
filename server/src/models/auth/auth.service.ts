@@ -28,12 +28,12 @@ export class AuthService {
     if (!user) {
       return null;
     }
-    this.logger.debug(`user : ${JSON.stringify(user)}`);
     const passwordCheck = await bcrypt.compare(password, user.password);
-    this.logger.debug(`passwordCheck :${passwordCheck}`);
     if (user && passwordCheck) {
       const payload = { email };
-      const accessToken = await this.jwtService.sign(payload);
+      const accessToken = await this.jwtService.sign(payload, {
+        algorithm: 'HS256'
+      });
       return { accessToken };
     }
   }

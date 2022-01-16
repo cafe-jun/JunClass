@@ -22,8 +22,10 @@ import { Users } from '../users/users.entities';
 import { HttpExceptionFilter } from '../../exceptions/http-exception.filter';
 // import { AuthGuard } from '@nestjs/passport';
 import { SignedInGurad } from '../../common/gurad/signed-in.guard';
+import { JwtAuthGuard } from 'src/common/gurad/jwt-auth.guard';
+import { AuthGuard } from '@nestjs/passport';
 
-@UseGuards(SignedInGurad)
+@UseGuards(AuthGuard('jwt'))
 @UseFilters(HttpExceptionFilter)
 @Controller('gathering')
 export class GatheringController {

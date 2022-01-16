@@ -19,8 +19,8 @@ export class SignedInGurad implements CanActivate {
     const authorization = request.headers.authorization;
     if (!authorization) {
       throw new HttpException(
-        JSON.stringify({ message: 'it is test error', code: 4000 }),
-        HttpStatus.FORBIDDEN
+        { message: 'it is test error', code: 4000 },
+        HttpStatus.BAD_REQUEST
       );
     }
     return true;
