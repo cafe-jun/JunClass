@@ -19,6 +19,8 @@ import { GatheringTypeValidation } from '../../common/pipe/gathering-type-valida
 import { GatheringType } from './gathering-type.enum';
 import { HttpExceptionFilter } from '../../exceptions/http-exception.filter';
 import { JwtAuthGuard } from 'src/common/gurad/jwt-auth.guard';
+import { GetUser } from 'src/common/decorators/get-user.decorators';
+import { Users } from '../users/users.entities';
 
 @UseGuards(JwtAuthGuard)
 @UseFilters(HttpExceptionFilter)
@@ -36,9 +38,11 @@ export class GatheringController {
   @Post('/')
   @UsePipes(ValidationPipe)
   createGathering(
+    @GetUser() user: Users,
     @Body('userId') userId: string,
     @Body() createGatheringDto: CreateGatheringDto
   ): Promise<Gathering> {
+    console.log(user);
     return this.gatheringService.createGathering(createGatheringDto, userId);
   }
   //   @Put('/:id')

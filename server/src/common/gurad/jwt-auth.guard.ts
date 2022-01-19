@@ -5,17 +5,19 @@ import {
   BadRequestException,
   HttpCode,
   Injectable,
-  Inject
+  Inject,
+  HttpException,
+  HttpStatus
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { JwtService } from '../../models/jwt/jwt.service';
+import { HttpExceptionFilter } from 'src/exceptions/http-exception.filter';
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(private readonly jwtService: JwtService) {}
-  canActivate(
-    context: ExecutionContext
-  ): boolean | Promise<boolean> | Observable<boolean> {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
+    console.log(request.user);
     if (!request.headers.authorization)
       throw new BadRequestException('authorization Not Found.');
     const authorization: string = request.headers.authorization;
@@ -24,7 +26,10 @@ export class JwtAuthGuard implements CanActivate {
       throw new BadRequestException('Bearer Not Found.');
     if (!token) throw new BadRequestException('token not found');
     try {
-    } catch (error) {}
-    return true;
+      const decode = await this.jwtService.verifyToken(token);
+      return true;
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
   }
 }

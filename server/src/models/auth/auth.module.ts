@@ -10,19 +10,9 @@ import { UsersRepository } from '../users/users.repostiory';
 import { JwtAuthGuard } from '../../common/gurad/jwt-auth.guard';
 
 @Module({
-  imports: [
-    JwtService,
-    // PassportModule.register({ defaultStrategy: 'jwt' }),
-    // JwtModule.register({
-    //   secret: process.env.JWT_SECRET,
-    //   signOptions: {
-    //     expiresIn: 60 * 60
-    //   }
-    // }),
-    TypeOrmModule.forFeature([UsersRepository])
-  ],
+  imports: [TypeOrmModule.forFeature([UsersRepository])],
   controllers: [AuthController],
   providers: [AuthService, JwtService, JwtAuthGuard],
-  exports: [AuthService, JwtService]
+  exports: [AuthService]
 })
 export class AuthModule {}

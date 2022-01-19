@@ -7,10 +7,7 @@ import { UsersRepository } from '../users/users.repostiory';
 import { JwtService } from '../jwt/jwt.service';
 
 @Module({
-  imports: [
-    JwtService,
-    TypeOrmModule.forFeature([GatheringRepository, UsersRepository])
-  ],
+  imports: [TypeOrmModule.forFeature([GatheringRepository, UsersRepository])],
   controllers: [GatheringController],
   providers: [GatheringService, JwtService]
 })
