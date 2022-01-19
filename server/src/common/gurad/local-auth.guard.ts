@@ -7,7 +7,6 @@ import { AuthGuard } from '@nestjs/passport';
 export class LocalAuthGurad extends AuthGuard('local') {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const can = await super.canActivate(context);
-    console.log(can);
     if (can) {
       const request = context.switchToHttp().getRequest();
       console.log('login for cookie');

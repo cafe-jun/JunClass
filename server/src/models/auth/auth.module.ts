@@ -7,9 +7,11 @@ import { AuthService } from './auth.service';
 // import { JwtStrategy } from './jwt.strategy';
 import { JwtService } from '../jwt/jwt.service';
 import { UsersRepository } from '../users/users.repostiory';
+import { JwtAuthGuard } from '../../common/gurad/jwt-auth.guard';
 
 @Module({
   imports: [
+    JwtService,
     // PassportModule.register({ defaultStrategy: 'jwt' }),
     // JwtModule.register({
     //   secret: process.env.JWT_SECRET,
@@ -20,9 +22,7 @@ import { UsersRepository } from '../users/users.repostiory';
     TypeOrmModule.forFeature([UsersRepository])
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtService /*, JwtStrategy*/],
-  exports: [
-    /*JwtStrategy, PassportModule*/
-  ]
+  providers: [AuthService, JwtService, JwtAuthGuard],
+  exports: [AuthService, JwtService]
 })
 export class AuthModule {}

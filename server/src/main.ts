@@ -29,7 +29,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, documentOption);
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
-  app.useWebSocketAdapter(new RedisIoAdapter(app));
+  // app.useWebSocketAdapter(new RedisIoAdapter(app));
   app.use(helmet());
   SwaggerModule.setup('v1/docs', app, document);
   logger.log(`Application${appConfig.port} Port  Running`);
