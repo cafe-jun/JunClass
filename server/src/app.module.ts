@@ -10,6 +10,8 @@ import { AppConfigModule } from './config/app/config.module';
 import { AuthModule } from './models/auth/auth.module';
 import { EventModule } from './models/event/event.module';
 import { ConfigModule } from '@nestjs/config';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { TransformInterceptor } from './common/interceptor/transform.interceptor';
 
 // import { RedisProviderModule } from './providers/cache/redis/provider.module';
 @Module({
@@ -29,7 +31,13 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor
+    }
+  ]
 })
 export class AppModule {}
 /*implements NestModule {
