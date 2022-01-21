@@ -26,7 +26,7 @@ export class JwtAuthGuard implements CanActivate {
       throw new BadRequestException('Bearer Not Found.');
     if (!token) throw new BadRequestException('token not found');
     try {
-      const decode = await this.jwtService.verifyToken(token);
+      await this.jwtService.verifyToken(token);
       return true;
     } catch (error) {
       throw new BadRequestException(error);
