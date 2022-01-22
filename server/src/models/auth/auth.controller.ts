@@ -9,7 +9,7 @@ import {
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { AuthService } from './auth.service';
 import { SignUpRequestDto } from '../users/dto/signup.request.dto';
-import { ApiTags, ApiBody, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -20,6 +20,9 @@ export class AuthController {
     description: '로그인 API'
   })
   @ApiBody({ type: AuthCredentialsDto })
+  @ApiResponse({ status: 2002, description: '로그인 성공' })
+  @ApiResponse({ status: 4001, description: '존재하지 않는 ID 입니다.' })
+  @ApiResponse({ status: 4002, description: '패스워드가 일치하지 않습니다.' })
   @Post('signin')
   signIn(
     @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto

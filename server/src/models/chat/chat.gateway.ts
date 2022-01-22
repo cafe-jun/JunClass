@@ -51,6 +51,6 @@ export class ChatGateway
   @SubscribeMessage('message')
   async handleRoomList(@ConnectedSocket() client: Socket) {
     const messages = await this.chatService.getAllMessage();
-    this.server.emit('msgToServer', messages);
+    this.server.emit('message', messages);
   }
 }
