@@ -8,8 +8,9 @@ import passport from 'passport';
 import { BaseAPIDocumentation } from './common/swagger/base.document';
 import { AllExceptionsFilter } from './exceptions/all-exception.filter';
 import { RedisIoAdapter } from './adapters/redis.adapter';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
+import { CustomValidationPipe } from './common/pipe/validation.pipe';
 declare const module: any;
 
 async function bootstrap() {
@@ -28,7 +29,7 @@ async function bootstrap() {
   const documentOption = new BaseAPIDocumentation().initializeOptions();
   const document = SwaggerModule.createDocument(app, documentOption);
   const { httpAdapter } = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+  app.useGlobalPipes(new CustomValidationPipe());
   // app.useWebSocketAdapter(new RedisIoAdapter(app));
   app.use(helmet());
   SwaggerModule.setup('v1/docs', app, document);

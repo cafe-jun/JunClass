@@ -25,7 +25,7 @@ export class AuthController {
   @ApiResponse({ status: 4002, description: '패스워드가 일치하지 않습니다.' })
   @Post('signin')
   signIn(
-    @Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto
+    @Body() authCredentialsDto: AuthCredentialsDto
   ): Promise<{ accessToken: string }> {
     return this.authService.signIn(authCredentialsDto);
   }
@@ -35,9 +35,7 @@ export class AuthController {
   })
   @ApiBody({ type: AuthCredentialsDto })
   @Post('/signup')
-  signUp(
-    @Body(ValidationPipe) signUpRequestDto: SignUpRequestDto
-  ): Promise<void> {
+  signUp(@Body() signUpRequestDto: SignUpRequestDto): Promise<void> {
     return this.authService.signUp(signUpRequestDto);
   }
 }

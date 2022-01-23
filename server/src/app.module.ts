@@ -1,4 +1,4 @@
-import { Module, NestModule, Inject, MiddlewareConsumer } from '@nestjs/common';
+import { Module, HttpException, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -10,8 +10,9 @@ import { AppConfigModule } from './config/app/config.module';
 import { AuthModule } from './models/auth/auth.module';
 import { EventModule } from './models/event/event.module';
 import { ConfigModule } from '@nestjs/config';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { TransformInterceptor } from './common/interceptor/transform.interceptor';
+import { APP_INTERCEPTOR, APP_FILTER, APP_PIPE } from '@nestjs/core';
+import { TransformInterceptor } from './common/filter/transform.interceptor';
+import { CustomValidationPipe } from './common/pipe/validation.pipe';
 
 // import { RedisProviderModule } from './providers/cache/redis/provider.module';
 @Module({
@@ -36,6 +37,14 @@ import { TransformInterceptor } from './common/interceptor/transform.interceptor
     {
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HttpException
+    },
+    {
+      provide: APP_PIPE,
+      useClass: CustomValidationPipe
     }
   ]
 })

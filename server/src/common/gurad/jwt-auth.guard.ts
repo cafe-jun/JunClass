@@ -9,7 +9,6 @@ import {
   HttpException,
   HttpStatus
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
 import { JwtService } from '../../models/jwt/jwt.service';
 import { HttpExceptionFilter } from 'src/exceptions/http-exception.filter';
 @Injectable()
