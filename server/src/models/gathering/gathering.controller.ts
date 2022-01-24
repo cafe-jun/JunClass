@@ -17,7 +17,7 @@ import { GatheringService } from './gathering.service';
 import { CreateGatheringDto } from './dto/create-gathering';
 import { GatheringTypeValidation } from '../../common/pipe/gathering-type-validation';
 import { GatheringType } from './gathering-type.enum';
-import { HttpExceptionFilter } from '../../exceptions/http-exception.filter';
+import { HttpExceptionFilter } from '../../common/exceptions/http-exception.filter';
 import { JwtAuthGuard } from 'src/common/gurad/jwt-auth.guard';
 import { GetUser } from 'src/common/decorators/get-user.decorators';
 import { Users } from '../users/users.entities';

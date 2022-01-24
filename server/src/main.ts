@@ -6,7 +6,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppConfigService } from './config/app/config.service';
 import passport from 'passport';
 import { BaseAPIDocumentation } from './common/swagger/base.document';
-import { AllExceptionsFilter } from './exceptions/all-exception.filter';
+import { AllExceptionsFilter } from './common/exceptions/all-exception.filter';
 import { RedisIoAdapter } from './adapters/redis.adapter';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';

@@ -1,16 +1,11 @@
-import { AuthGuard } from '@nestjs/passport';
 import {
   CanActivate,
   ExecutionContext,
   BadRequestException,
-  HttpCode,
-  Injectable,
-  Inject,
-  HttpException,
-  HttpStatus
+  Injectable
 } from '@nestjs/common';
 import { JwtService } from '../../models/jwt/jwt.service';
-import { HttpExceptionFilter } from 'src/exceptions/http-exception.filter';
+
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(private readonly jwtService: JwtService) {}

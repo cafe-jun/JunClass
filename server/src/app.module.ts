@@ -35,14 +35,6 @@ import { CustomValidationPipe } from './common/pipe/validation.pipe';
   providers: [
     AppService,
     {
-      provide: APP_INTERCEPTOR,
-      useClass: TransformInterceptor
-    },
-    {
-      provide: APP_FILTER,
-      useClass: HttpException
-    },
-    {
       provide: APP_PIPE,
       useClass: CustomValidationPipe
     }
