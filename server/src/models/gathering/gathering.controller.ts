@@ -14,7 +14,7 @@ import {
 } from '@nestjs/common';
 import { Gathering } from './gathering.entities';
 import { GatheringService } from './gathering.service';
-import { CreateGatheringDto } from './dto/create-gathering';
+import { CreateGatheringDto } from './dto/create-gathering.dto';
 import { GatheringTypeValidation } from '../../common/pipe/gathering-type-validation';
 import { GatheringType } from './gathering-type.enum';
 import { HttpExceptionFilter } from '../../common/exceptions/http-exception.filter';
@@ -45,12 +45,7 @@ export class GatheringController {
     console.log(user);
     return this.gatheringService.createGathering(createGatheringDto, userId);
   }
-  //   @Put('/:id')
-  //   updateGathering(@Param(id)): Promise<void> {
-  //     return this.gatheringService.updateUser({
 
-  //     });
-  //   }
   @Patch('/:id/type')
   updateGatheringType(
     @Param('id') id: string,
