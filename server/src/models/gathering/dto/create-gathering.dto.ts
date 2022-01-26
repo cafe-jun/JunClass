@@ -33,6 +33,7 @@ export class CreateGatheringDto {
   @Expose()
   @ApiProperty()
   get type(): string {
+    console.log('test');
     return this._type;
   }
 }
