@@ -1,4 +1,4 @@
-import { CreateGatheringDto } from './dto/create-gathering';
+import { CreateGatheringDto } from './dto/create-gathering.dto';
 import { Repository, EntityRepository } from 'typeorm';
 import { Gathering } from './gathering.entities';
 import { Users } from '../users/users.entities';

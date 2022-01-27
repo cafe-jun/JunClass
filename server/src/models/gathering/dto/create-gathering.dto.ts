@@ -1,5 +1,3 @@
-import { IsNotEmpty, isNotEmpty } from 'class-validator';
-import { GatheringType } from '../gathering-type.enum';
 import { Exclude, Expose } from 'class-transformer';
 import { Gathering } from '../gathering.entities';
 import { ApiProperty } from '@nestjs/swagger';
