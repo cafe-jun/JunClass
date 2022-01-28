@@ -16,16 +16,9 @@ export class GatheringService {
   async getAllGathering(): Promise<Gathering[]> {
     return this.gatheringRepository.find();
   }
-  async createGathering(
-    createGatDto: CreateGatheringDto,
-    userId: string
-  ): Promise<Gathering> {
+  async createGathering(gathering: Gathering, userId: string): Promise<void> {
     this.logger.log(`gathering user :: ${JSON.stringify(userId)}`);
-    const saveGathering = await this.gatheringRepository.createGathering(
-      createGatDto,
-      userId
-    );
-    return saveGathering;
+    await this.gatheringRepository.createGathering(gathering, userId);
   }
 
   async getGatheringById(id: number): Promise<Gathering> {

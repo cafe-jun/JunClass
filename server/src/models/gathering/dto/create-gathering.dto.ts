@@ -4,15 +4,13 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEmpty, IsString } from 'class-validator';
 
 export class CreateGatheringDto {
-  @IsEmpty()
+  @Expose()
   @IsString()
   title: string;
-
-  @IsEmpty()
+  @Expose()
   @IsString()
   thumbnail: string;
-
-  @IsEmpty()
+  @Expose()
   @IsString()
   type: string;
 

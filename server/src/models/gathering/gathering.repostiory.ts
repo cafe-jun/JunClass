@@ -5,12 +5,9 @@ import { Users } from '../users/users.entities';
 
 @EntityRepository(Gathering)
 export class GatheringRepository extends Repository<Gathering> {
-  async createGathering(
-    createGatheringDto: CreateGatheringDto,
-    userId: string
-  ): Promise<Gathering> {
-    const { thumbnail, title, type } = createGatheringDto;
-    const gathering = this.create({
+  async createGathering(gathering: Gathering, userId: string): Promise<void> {
+    const { thumbnail, title, type } = gathering;
+    await this.create({
       type: type,
       thumbnail: thumbnail,
       title: title,
@@ -19,6 +16,5 @@ export class GatheringRepository extends Repository<Gathering> {
       }
     });
     await this.save(gathering);
-    return gathering;
   }
 }
