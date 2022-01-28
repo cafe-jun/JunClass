@@ -30,7 +30,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, documentOption);
   const { httpAdapter } = app.get(HttpAdapterHost);
   // app.useGlobalPipes(new CustomValidationPipe());
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalPipes(new ValidationPipe());
   // app.useWebSocketAdapter(new RedisIoAdapter(app));
 
   app.use(helmet());
