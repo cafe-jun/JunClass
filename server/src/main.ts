@@ -29,8 +29,10 @@ async function bootstrap() {
   const documentOption = new BaseAPIDocumentation().initializeOptions();
   const document = SwaggerModule.createDocument(app, documentOption);
   const { httpAdapter } = app.get(HttpAdapterHost);
-  app.useGlobalPipes(new CustomValidationPipe());
+  // app.useGlobalPipes(new CustomValidationPipe());
+  app.useGlobalPipes(new ValidationPipe());
   // app.useWebSocketAdapter(new RedisIoAdapter(app));
+
   app.use(helmet());
   SwaggerModule.setup('v1/docs', app, document);
   logger.log(`Application${appConfig.port} Port  Running`);

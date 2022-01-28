@@ -22,7 +22,7 @@ import { JwtAuthGuard } from 'src/common/gurad/jwt-auth.guard';
 import { GetUser } from 'src/common/decorators/get-user.decorators';
 import { Users } from '../users/users.entities';
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @UseFilters(HttpExceptionFilter)
 @Controller('gathering')
 export class GatheringController {
@@ -36,13 +36,13 @@ export class GatheringController {
     return this.gatheringService.getGatheringById(id);
   }
   @Post('/')
-  @UsePipes(ValidationPipe)
+  // @UsePipes(ValidationPipe)
   createGathering(
     @GetUser() user: Users,
     @Body('userId') userId: string,
     @Body() createGatheringDto: CreateGatheringDto
   ): Promise<Gathering> {
-    console.log(user);
+    console.log(createGatheringDto);
     return this.gatheringService.createGathering(createGatheringDto, userId);
   }
 

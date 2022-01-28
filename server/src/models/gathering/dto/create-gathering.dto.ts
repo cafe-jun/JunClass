@@ -1,37 +1,36 @@
 import { Exclude, Expose } from 'class-transformer';
 import { Gathering } from '../gathering.entities';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsEmpty, IsString } from 'class-validator';
 
 export class CreateGatheringDto {
-  @Exclude() private readonly _id: number;
-  @Exclude() private readonly _title: string;
-  @Exclude() private readonly _thumbnail: string;
-  @Exclude() private readonly _type: string;
+  @IsEmpty()
+  @IsString()
+  title: string;
 
-  constructor(gathering: Gathering) {
-    this._id = gathering.id;
-    this._title = gathering.title;
-    this._thumbnail = gathering.thumbnail;
-    this._type = gathering.type;
+  @IsEmpty()
+  @IsString()
+  thumbnail: string;
+
+  @IsEmpty()
+  @IsString()
+  type: string;
+
+  constructor() {}
+
+  static of(
+    title: string,
+    thumbnail: string,
+    type: string
+  ): CreateGatheringDto {
+    const gathering = new CreateGatheringDto();
+    gathering.title = title;
+    gathering.thumbnail = thumbnail;
+    gathering.type = type;
+    return gathering;
   }
 
-  get id(): number {
-    return this._id;
-  }
-  @Expose()
-  @ApiProperty()
-  get title(): string {
-    return this._title;
-  }
-  @Expose()
-  @ApiProperty()
-  get thumbnail(): string {
-    return this._thumbnail;
-  }
-  @Expose()
-  @ApiProperty()
-  get type(): string {
-    console.log('test');
-    return this._type;
+  toEntity() {
+    return Gathering.register(this.title, this.thumbnail, this.type);
   }
 }

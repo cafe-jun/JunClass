@@ -38,4 +38,12 @@ export class Gathering extends BaseEntity {
     onDelete: 'RESTRICT'
   })
   users: Users;
+
+  static register(title: string, thumbnail: string, type: string): Gathering {
+    const gathering = new Gathering();
+    gathering.title = title;
+    gathering.thumbnail = thumbnail;
+    gathering.type = type;
+    return gathering;
+  }
 }

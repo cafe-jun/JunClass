@@ -33,11 +33,11 @@ import { CustomValidationPipe } from './common/pipe/validation.pipe';
   ],
   controllers: [AppController],
   providers: [
-    AppService,
-    {
-      provide: APP_PIPE,
-      useClass: CustomValidationPipe
-    }
+    AppService
+    // {
+    //   provide: APP_PIPE,
+    //   useClass: CustomValidationPipe
+    // }
   ]
 })
 export class AppModule {}
