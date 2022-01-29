@@ -1,7 +1,8 @@
 import { Exclude, Expose } from 'class-transformer';
 import { Gathering } from '../gathering.entities';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmpty, IsString } from 'class-validator';
+import { IsEmpty, IsString, IsObject } from 'class-validator';
+import { Users } from 'src/models/users/users.entities';
 
 export class CreateGatheringDto {
   @Expose()
@@ -11,11 +12,11 @@ export class CreateGatheringDto {
   @IsString()
   thumbnail: string;
   @Expose()
-  @IsString()
+  @IsString({ message: 'type is must be value', each: true })
   type: string;
   @Expose()
-  @IsString()
-  userId: string;
+  @IsObject({ message: 'User Object must be value' })
+  user: Users;
 
   constructor() {}
 
@@ -23,22 +24,17 @@ export class CreateGatheringDto {
     title: string,
     thumbnail: string,
     type: string,
-    userId: string
+    user: Users
   ): CreateGatheringDto {
     const gathering = new CreateGatheringDto();
     gathering.title = title;
     gathering.thumbnail = thumbnail;
     gathering.type = type;
-    gathering.userId = userId;
+    gathering.user = user;
     return gathering;
   }
 
   toEntity() {
-    return Gathering.register(
-      this.title,
-      this.thumbnail,
-      this.type,
-      this.userId
-    );
+    return Gathering.register(this.title, this.thumbnail, this.type, this.user);
   }
 }

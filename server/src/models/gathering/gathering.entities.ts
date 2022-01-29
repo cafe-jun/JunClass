@@ -43,13 +43,13 @@ export class Gathering extends BaseEntity {
     title: string,
     thumbnail: string,
     type: string,
-    userId: string
+    user: Users
   ): Gathering {
     const gathering = new Gathering();
     gathering.title = title;
     gathering.thumbnail = thumbnail;
     gathering.type = type;
-    gathering.users.id = userId;
+    gathering.users = user;
     return gathering;
   }
 }
