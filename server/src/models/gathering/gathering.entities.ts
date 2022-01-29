@@ -39,11 +39,17 @@ export class Gathering extends BaseEntity {
   })
   users: Users;
 
-  static register(title: string, thumbnail: string, type: string): Gathering {
+  static register(
+    title: string,
+    thumbnail: string,
+    type: string,
+    userId: string
+  ): Gathering {
     const gathering = new Gathering();
     gathering.title = title;
     gathering.thumbnail = thumbnail;
     gathering.type = type;
+    gathering.users.id = userId;
     return gathering;
   }
 }

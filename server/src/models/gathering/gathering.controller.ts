@@ -38,12 +38,9 @@ export class GatheringController {
   }
   @Post('/')
   // @UsePipes(ValidationPipe)
-  createGathering(
-    // @GetUser() user: Users,
-    @Body('userId') userId: string,
-    @Body() dto: CreateGatheringDto
-  ): string {
-    this.gatheringService.createGathering(dto.toEntity(), userId);
+  createGathering(@Body() dto: CreateGatheringDto): string {
+    console.log(dto);
+    this.gatheringService.createGathering(dto.toEntity());
     return 'success';
   }
 

@@ -28,9 +28,11 @@ async function bootstrap() {
   });
   const documentOption = new BaseAPIDocumentation().initializeOptions();
   const document = SwaggerModule.createDocument(app, documentOption);
-  const { httpAdapter } = app.get(HttpAdapterHost);
+  // const { httpAdapter } = app.get(HttpAdapterHost);
   // app.useGlobalPipes(new CustomValidationPipe());
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({ transform: true, forbidNonWhitelisted: true })
+  );
   // app.useWebSocketAdapter(new RedisIoAdapter(app));
 
   app.use(helmet());
