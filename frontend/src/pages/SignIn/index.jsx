@@ -1,9 +1,11 @@
 import React from 'react';
 import { SignInBody } from './styles';
 import Controls from '@components/controls/Controls';
-
+import useInput from '@hooks/useInput';
+import PersonIcon from '@mui/icons-material/Person';
+import { InputAdornment } from '@mui/material';
 const SignIn = () => {
-    const [account, onChangeAccount, setAccount] = useState();
+    const [account, onChangeAccount, setAccount] = useInput();
     const onSubmit = () => {
         return false;
     };
