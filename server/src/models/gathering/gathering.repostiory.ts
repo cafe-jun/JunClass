@@ -13,8 +13,7 @@ export class GatheringRepository extends Repository<Gathering> {
       await this.save(gathering);
     } catch (error) {
       console.log(error);
-      // if(error ===)
-      // new HttpExceptionFilter('')
+      // npm// new HttpExceptionFilter('')
     }
   }
 }
