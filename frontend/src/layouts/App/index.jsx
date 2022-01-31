@@ -5,16 +5,13 @@ import { Switch, Route, Redirect } from 'react-router';
 const SignIn = loadable(() => import('@pages/SignIn'));
 const Gathering = loadable(() => import('@pages/Gathering'));
 const App = () => {
-    const isAuth = true;
-    return (
-        <div className="App">
-            {isAuth ? <Redirect to="/signin" /> : <Redirect to="/gathering" />}
-            <Switch>
-                <Route path="/signin" component={SignIn} />
-                <Route path="/gathering" component={Gathering} />
-            </Switch>
-        </div>
-    );
+  const isAuth = true;
+  return (
+    <>
+      <Route path="/signin" component={SignIn} />
+      <Route path="/gathering" component={Gathering} />
+    </>
+  );
 };
 
 export default App;
