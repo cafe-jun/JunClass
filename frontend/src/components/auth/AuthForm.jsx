@@ -79,6 +79,7 @@ const AuthForm = ({ children }) => {
           placeholder="패스워드"
           type="password"
         />
+        <Button>로그인</Button>
       </form>
     </AuthFormBlock>
   );
