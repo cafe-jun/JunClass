@@ -17,11 +17,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const appConfig = app.get<AppConfigService>(AppConfigService);
   const logger = new Logger('Main');
-  // const configService = app.get(ConfigService);
-  // const port = configService.get('PORT');
-  // app.useWebSocketAdapter(new RedisIoAdapter(app));
-  // app.use(passport.initialize());
-  // app.use(passport.session());
+
   app.enableCors({
     origin: ['http://localhost:3095'],
     methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE']

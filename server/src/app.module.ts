@@ -41,27 +41,3 @@ import { CustomValidationPipe } from './common/pipe/validation.pipe';
   ]
 })
 export class AppModule {}
-/*implements NestModule {
-  // constructor(@Inject(REDIS) private readonly redisClient: RedisClient) {}
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer
-  //     .apply(
-  //       session({
-  //         store: new (RedisStore(session))({
-  //           client: this.redisClient,
-  //           logErrors: true
-  //         }),
-  //         saveUninitialized: false,
-  //         secret: 'JunClass',
-  //         resave: false,
-  //         cookie: {
-  //           sameSite: true,
-  //           httpOnly: false,
-  //           maxAge: 60000
-  //         }
-  //       })
-  //     )
-  //     .forRoutes('*');
-  // }
-// }
-*/
