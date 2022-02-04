@@ -1,11 +1,10 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { GatheringRepository } from './gathering.repostiory';
 import { Gathering } from './gathering.entities';
-import { CreateGatheringDto } from './dto/create-gathering.dto';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { GatheringType } from './gathering-type.enum';
-import { Users } from '../users/users.entities';
-import { throws } from 'assert';
+
 @Injectable()
 export class GatheringService {
   constructor(

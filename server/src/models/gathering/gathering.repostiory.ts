@@ -5,7 +5,7 @@ import { Users } from '../users/users.entities';
 import { UseFilters, HttpException } from '@nestjs/common';
 import { HttpExceptionFilter } from 'src/common/exceptions/http-exception.filter';
 
-@UseFilters(HttpExceptionFilter)
+// @UseFilters(HttpExceptionFilter)
 @EntityRepository(Gathering)
 export class GatheringRepository extends Repository<Gathering> {
   async createGathering(gathering: Gathering): Promise<void> {
