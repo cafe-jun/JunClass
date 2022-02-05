@@ -72,17 +72,19 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
       <h3> {text}</h3>
       <form onSubmit={onSubmit}>
         <StyledInput
-          autoComplete="email"
-          name="email"
+          autoComplete="username"
+          name="username"
           placeholder="아이디"
-          onChnage={onChange}
+          onChange={onChange}
+          value={form.username}
         />
         <StyledInput
           autoComplete="new-password"
           name="password"
           placeholder="패스워드"
           type="password"
-          onChnage={onChange}
+          onChange={onChange}
+          value={form.password}
         />
         {type === 'signup' && (
           <StyledInput
@@ -90,8 +92,8 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             name="passwordConfirm"
             placeholder="비밀번호 확인"
             type="password"
-            onChnage={onChange}
-            // value={form.passwordConfirm}
+            onChange={onChange}
+            value={form.passwordConfirm}
           />
         )}
         <ButtonWithMarginTop cyan fullWidth style={{ marginTop: '1rem ' }}>

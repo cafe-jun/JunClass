@@ -2,18 +2,17 @@ import React from 'react';
 import loadable from '@loadable/component';
 import { Route } from 'react-router';
 
-const SignIn = loadable(() => import('@pages/SignInForm'));
+const SignInPage = loadable(() => import('@pages/SignInPage'));
 const Gathering = loadable(() => import('@pages/Gathering'));
-const SignUp = loadable(() => import('@pages/SignUpForm'));
-
+const SignUpPage = loadable(() => import('@pages/SignUpPage'));
 const App = () => {
   const isAuth = true;
   return (
     <>
       {/*{isAuth ? <Redirect to="/signin" /> : <Redirect to="/gathering" />}*/}
       {/*<Switch>*/}
-      <Route path="/signin" component={SignIn} />
-      <Route path="/signup" component={SignUp} />
+      <Route path="/signin" component={SignInPage} />
+      <Route path="/signup" component={SignUpPage} />
       <Route path="/gathering" component={Gathering} />
       {/*</Switch>*/}
     </>

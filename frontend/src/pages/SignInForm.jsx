@@ -1,4 +1,3 @@
-import AuthTemplate from '../components/auth/AuthTemplate';
 import AuthForm from '../components/auth/AuthForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';

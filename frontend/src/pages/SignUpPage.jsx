@@ -1,13 +1,13 @@
 import React from 'react';
 import AuthTemplate from '../components/auth/AuthTemplate';
-import SignInForm from './SignInForm';
-
-const SignInPage = () => {
+import SignUpForm from './SignUpForm';
+// rsi
+const SignUpPage = () => {
   return (
     <AuthTemplate>
-      <SignInForm />
+      <SignUpForm />
     </AuthTemplate>
   );
 };
 
-export default SignInPage;
+export default SignUpPage;
