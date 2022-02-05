@@ -14,7 +14,7 @@ import { ApiTags, ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+     constructor(private authService: AuthService) {}
   @ApiOperation({
     summary: '로그인 API',
     description: '로그인 API'

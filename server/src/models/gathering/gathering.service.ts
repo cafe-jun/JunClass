@@ -13,7 +13,7 @@ export class GatheringService {
   ) {}
   private logger = new Logger('GatheringService');
   async getAllGathering(): Promise<Gathering[]> {
-    return this.gatheringRepository.find();
+    return await this.gatheringRepository.find();
   }
   async createGathering(gathering: Gathering): Promise<void> {
     this.logger.log(`gathering user :: `);

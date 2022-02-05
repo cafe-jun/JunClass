@@ -1,5 +1,9 @@
-import jwt, { JsonWebTokenError , NotBeforeError, TokenExpiredError} from 'jsonwebtoken';
-import { Injectable } from "@nestjs/common";
+import jwt, {
+  JsonWebTokenError,
+  NotBeforeError,
+  TokenExpiredError
+} from 'jsonwebtoken';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class JwtService {
@@ -11,8 +15,7 @@ export class JwtService {
   }
   async verifyToken(token) {
     try {
-      const decode = jwt.verify(token, process.env.JWT_SECRET);
-      return decode;
+      return jwt.verify(token, process.env.JWT_SECRET);
     } catch (error) {
       switch (error.constructor) {
         case TokenExpiredError:
