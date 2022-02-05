@@ -13,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR, APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { TransformInterceptor } from './common/filter/transform.interceptor';
 import { CustomValidationPipe } from './common/pipe/validation.pipe';
+import {AllExceptionsFilter} from "./common/exceptions/all-exception.filter";
 
 // import { RedisProviderModule } from './providers/cache/redis/provider.module';
 @Module({
@@ -33,11 +34,11 @@ import { CustomValidationPipe } from './common/pipe/validation.pipe';
   ],
   controllers: [AppController],
   providers: [
-    AppService
-    // {
-    //   provide: APP_PIPE,
-    //   useClass: CustomValidationPipe
-    // }
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: AllExceptionsFilter
+    }
   ]
 })
 export class AppModule {}
