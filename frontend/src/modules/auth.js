@@ -2,15 +2,17 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
 import * as authAPI from '../lib/api/auth';
-import createRequestSaga from '../lib/createRequestSaga';
+import createRequestSaga, {
+  createRequestActionTypes,
+} from '../lib/createRequestSaga';
 
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 
 const [SIGNIN, SIGNIN_SUCCESS, SIGNIN_FAILURE] =
-  createRequestSaga('auth/SIGNIN');
+  createRequestActionTypes('auth/SIGNIN');
 const [SIGNUP, SIGNUP_SUCCESS, SIGNUP_FAILURE] =
-  createRequestSaga('auth/SIGNUP');
+  createRequestActionTypes('auth/SIGNUP');
 
 export const changeField = createAction(
   CHANGE_FIELD,
@@ -57,25 +59,25 @@ const auth = handleActions(
       produce(state, (draft) => {
         draft[form][key] = value;
       }),
-    [INITIALIZE_FORM]: (state, { payload: { form } }) => ({
+    [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
     }),
-    [SIGNIN_SUCCESS]: (state, { payload: { auth } }) => ({
+    [SIGNIN_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
       auth,
     }),
-    [SIGNIN_FAILURE]: (state, { payload: { error } }) => ({
+    [SIGNIN_FAILURE]: (state, { payload: error }) => ({
       ...state,
       authError: error,
     }),
-    [SIGNUP_SUCCESS]: (state, { payload: { auth } }) => ({
+    [SIGNUP_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
       auth,
     }),
-    [SIGNUP_FAILURE]: (state, { payload: { error } }) => ({
+    [SIGNUP_FAILURE]: (state, { payload: error }) => ({
       ...state,
       authError: error,
     }),
