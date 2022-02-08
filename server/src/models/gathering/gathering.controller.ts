@@ -18,10 +18,6 @@ import { CreateGatheringDto } from './dto/create-gathering.dto';
 import { GatheringTypeValidation } from '../../common/pipe/gathering-type-validation';
 import { GatheringType } from './gathering-type.enum';
 import { HttpExceptionFilter } from '../../common/exceptions/http-exception.filter';
-import { JwtAuthGuard } from 'src/common/gurad/jwt-auth.guard';
-import { GetUser } from 'src/common/decorators/get-user.decorators';
-import { Users } from '../users/users.entities';
-import { plainToClass } from 'class-transformer';
 
 // @UseGuards(JwtAuthGuard)
 @UseFilters(HttpExceptionFilter)

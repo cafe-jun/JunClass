@@ -19,22 +19,17 @@ export class AuthService {
     return await this.usersRepository.createUser(signUpRequestDto);
   }
 
-  async signIn(
-    authCredentialsDto: AuthCredentialsDto
-  ): Promise<{ accessToken: string }> {
+  async generateToken(authCredentialsDto: AuthCredentialsDto): Promise<string> {
     const { email, password } = authCredentialsDto;
     const user = await this.usersRepository.findOne({
       select: ['email', 'password', 'id'],
       where: { email }
     });
-    if (!user) {
-      return null;
-    }
+    if (!user) return null;
     const passwordCheck = await bcrypt.compare(password, user.password);
     if (user && passwordCheck) {
       const payload = { email };
-      const accessToken = await this.jwtService.createToken(payload);
-      return { accessToken };
+      return await this.jwtService.generateToken(payload);
     }
   }
 
