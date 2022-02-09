@@ -11,12 +11,14 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   canActivate(
     context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const ctx = context.switchToHttp().getRequest();
-    console.log(ctx.cookies);
+    const cookies = context.switchToHttp().getRequest().cookies;
+    console.log(`cookkie ${JSON.stringify(cookies)}`);
     return super.canActivate(context);
   }
   handleRequest(err, user, info) {
+    console.log(err);
     console.log(user);
+    console.log(info);
     if (err || !user) {
       throw err || new UnauthorizedException();
     }

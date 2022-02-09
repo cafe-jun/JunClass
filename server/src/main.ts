@@ -1,5 +1,6 @@
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { AppModule } from './app.module';
+import cookiePaser from 'cookie-parser';
 // import { RedisIoAdapter } from './adapters/redis.adapter';
 import { SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -17,7 +18,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const appConfig = app.get<AppConfigService>(AppConfigService);
   const logger = new Logger('Main');
-
+  app.use(cookiePaser());
   app.enableCors({
     origin: ['http://localhost:3095'],
     methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE']

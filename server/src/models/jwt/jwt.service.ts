@@ -7,12 +7,12 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class JwtService {
-  async generateToken(payload) {
-    return jwt.sign(payload, process.env.JWT_SECRET, {
-      algorithm: 'HS256',
-      expiresIn: '60'
-    });
-  }
+  // async generateToken(payload) {
+  //   return jwt.sign(payload, process.env.JWT_SECRET, {
+  //     algorithm: 'HS256',
+  //     expiresIn: '60'
+  //   });
+  // }
   async verifyToken(token) {
     try {
       return jwt.verify(token, process.env.JWT_SECRET);

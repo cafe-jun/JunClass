@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
-import { JwtService } from '../jwt/jwt.service';
+// import { JwtService } from '../jwt/jwt.service';
 import { UsersRepository } from '../users/users.repostiory';
 import { JwtAuthGuard } from '../../common/gurad/jwt-auth.guard';
 import { PassportModule } from '@nestjs/passport';
@@ -20,12 +20,12 @@ import { JwtStrategy } from './jwt.strategy';
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: {
-        expiresIn: '60s'
+        expiresIn: '3600s'
       }
     })
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtService, JwtAuthGuard, JwtStrategy],
+  providers: [AuthService, JwtStrategy],
   exports: [AuthService, JwtStrategy]
 })
 export class AuthModule {}

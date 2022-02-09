@@ -2,10 +2,10 @@ import { Injectable, Body, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import bcrypt from 'bcrypt';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
-// import { JwtService } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
 import { UsersRepository } from '../users/users.repostiory';
 import { SignUpRequestDto } from '../users/dto/signup.request.dto';
-import { JwtService } from '../jwt/jwt.service';
+// import { JwtService } from '../jwt/jwt.service';
 
 @Injectable()
 export class AuthService {
@@ -29,7 +29,7 @@ export class AuthService {
     const passwordCheck = await bcrypt.compare(password, user.password);
     if (user && passwordCheck) {
       const payload = { email };
-      return await this.jwtService.generateToken(payload);
+      return this.jwtService.sign(payload);
     }
   }
 
