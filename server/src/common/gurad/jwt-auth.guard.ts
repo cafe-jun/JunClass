@@ -21,6 +21,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     }
     return user;
   }
+  // Header
   // private fromHeaderBearer() {
   //   if (!request.headers.authorization)
   //     throw new BadRequestException('authorization Not Found.');

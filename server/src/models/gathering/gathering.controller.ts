@@ -34,10 +34,12 @@ export class GatheringController {
   }
   @Post('/')
   // @UsePipes(ValidationPipe)
-  createGathering(@Body() dto: CreateGatheringDto): string {
-    console.log(dto);
-    this.gatheringService.createGathering(dto.toEntity());
-    return 'success';
+  async createGathering(@Body() dto: CreateGatheringDto): string {
+    try {
+      await this.gatheringService.createGathering(dto.toEntity());
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   @Patch('/:id/type')
