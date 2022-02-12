@@ -22,12 +22,11 @@ export class UserService {
     return this.userRepository.find();
   }
   async createUser(signInDto: SignUpRequestDto): Promise<Users> {
-    const { email, age, password } = signInDto;
+    const { email, password } = signInDto;
     const hashpassword = await bcrypt.hash(password, 12);
     const user = await this.userRepository.save({
       id: uuid(),
       email,
-      age,
       password: hashpassword
     });
     // await this.userRepository.save(user);

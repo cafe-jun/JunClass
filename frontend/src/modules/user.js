@@ -1,10 +1,11 @@
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
-import { createAction } from 'redux-action';
+// TODO 여기 같이 createAction 하면 동작 안함
+// import { createAction } from 'redux-action';
 import * as authAPI from '../lib/api/auth';
 import { takeLatest } from 'redux-saga/effects';
-import { handleActions } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 const TEMP_SET_USER = 'user/TEMP_SET_USER';
 const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] =
   createRequestActionTypes('user/CHECK');

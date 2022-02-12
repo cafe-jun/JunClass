@@ -20,6 +20,13 @@ export class AuthService {
     return await this.usersRepository.createUser(signUpRequestDto);
   }
 
+  async generateAccessToken(user: Users) {
+    if (user) {
+      const payload = { id: user.id, email: user.email };
+      return this.jwtService.sign(payload);
+    }
+  }
+
   async generateToken(authCredentialsDto: AuthCredentialsDto): Promise<string> {
     const { email, password } = authCredentialsDto;
     const user = await this.usersRepository.findOne({

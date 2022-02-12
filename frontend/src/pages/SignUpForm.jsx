@@ -1,4 +1,3 @@
-import AuthTemplate from '../components/auth/AuthTemplate';
 import AuthForm from '../components/auth/AuthForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, signup } from '../modules/auth';
@@ -52,11 +51,9 @@ const SignUpForm = ({ history }) => {
     }
     if (auth) {
       // TODO 회원가입 성공 메세지
-      if (auth) {
-        console.log('회원가입 성공');
-        console.log(auth);
-        dispatch(check());
-      }
+      console.log('회원가입 성공');
+      console.log(auth);
+      dispatch(check());
     }
   }, [auth, authError, dispatch]);
   useEffect(() => {
@@ -65,7 +62,7 @@ const SignUpForm = ({ history }) => {
       console.log(user);
       history.push('/'); // 홈 화면으로 이동
     }
-  }, [dispatch]);
+  }, [user, history]);
   return (
     <AuthForm
       type="signup"

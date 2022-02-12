@@ -48,8 +48,16 @@ export class AuthController {
   })
   @ApiBody({ type: AuthCredentialsDto })
   @Post('/signup')
-  signUp(@Body() signUpRequestDto: SignUpRequestDto): Promise<Users> {
-    return this.authService.signUp(signUpRequestDto);
+  async signUp(
+    @Body() signUpRequestDto: SignUpRequestDto,
+    @Res({ passthrough: true }) res: Response
+  ) {
+    const user = await this.authService.signUp(signUpRequestDto);
+    const accessToken = await this.authService.generateAccessToken(user);
+    res.cookie('access-token', accessToken, {
+      httpOnly: true
+    });
+    return { message: 'success' };
   }
   @UseGuards(JwtAuthGuard)
   @Get('/check')

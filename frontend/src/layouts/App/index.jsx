@@ -6,7 +6,6 @@ const SignInPage = loadable(() => import('@pages/SignInPage'));
 const Gathering = loadable(() => import('@pages/Gathering'));
 const SignUpPage = loadable(() => import('@pages/SignUpPage'));
 const App = () => {
-  const isAuth = true;
   return (
     <>
       {/*{isAuth ? <Redirect to="/signin" /> : <Redirect to="/gathering" />}*/}

@@ -17,7 +17,9 @@ export class UsersRepository extends Repository<Users> {
       return await this.save(user);
     } catch (error) {
       if (error.code === '23050') throw new ConflictException('Existing name');
-      throw new InternalServerErrorException();
+      else if ((error.code = '23000'))
+        throw new ConflictException('Duplicate entry ');
+      else throw new InternalServerErrorException();
     }
   }
 }
