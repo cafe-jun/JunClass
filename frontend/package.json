@@ -60,5 +60,5 @@
         "customize-cra": "^1.0.0",
         "react-app-rewired": "^2.1.11"
     },
-    "proxy" : "http://localhost:3095/"
+    "proxy" : "http://localhost:3002/"
 }

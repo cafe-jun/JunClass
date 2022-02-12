@@ -2,15 +2,11 @@ import {
   Controller,
   Get,
   Post,
-  Put,
   Delete,
   Param,
   Body,
-  UsePipes,
-  ValidationPipe,
   Patch,
-  UseFilters,
-  UseGuards
+  UseFilters
 } from '@nestjs/common';
 import { Gathering } from './gathering.entities';
 import { GatheringService } from './gathering.service';
@@ -34,7 +30,7 @@ export class GatheringController {
   }
   @Post('/')
   // @UsePipes(ValidationPipe)
-  async createGathering(@Body() dto: CreateGatheringDto): string {
+  async createGathering(@Body() dto: CreateGatheringDto): Promise<void> {
     try {
       await this.gatheringService.createGathering(dto.toEntity());
     } catch (error) {

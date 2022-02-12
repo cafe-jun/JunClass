@@ -7,18 +7,18 @@ export class SignUpRequestDto {
     example: 'tb25271@gmail.com',
     description: '이메일'
   })
-  public email: string;
-
-  @IsNumber()
-  @ApiProperty({
-    example: 30,
-    description: '나이'
-  })
-  public age: number;
+  email: string;
+  //
+  // @IsNumber()
+  // @ApiProperty({
+  //   example: 30,
+  //   description: '나이'
+  // })
+  // public age: number;
   @IsString()
   @ApiProperty({
     example: 'test123',
     description: '패스워드'
   })
-  public password: string;
+  password: string;
 }

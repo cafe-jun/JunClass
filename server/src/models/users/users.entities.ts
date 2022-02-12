@@ -17,7 +17,7 @@ export class Users extends BaseEntity {
   id: string;
   @Column('varchar', { name: 'email', unique: true, length: 50 })
   email: string;
-  @Column('int', { name: 'age' })
+  @Column('int', { name: 'age', nullable: true })
   age: number;
   @Column('varchar', { name: 'password', length: 200, select: false })
   password: string;

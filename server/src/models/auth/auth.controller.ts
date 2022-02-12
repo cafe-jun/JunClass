@@ -14,7 +14,7 @@ import { SignUpRequestDto } from '../users/dto/signup.request.dto';
 import { Response } from 'express';
 import { ApiTags, ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../common/gurad/jwt-auth.guard';
-import { Users } from '../users/users.model';
+import { Users } from '../users/users.entities';
 import { GetUser } from '../../common/decorators/get-user.decorators';
 
 @ApiTags('Auth')
@@ -48,7 +48,7 @@ export class AuthController {
   })
   @ApiBody({ type: AuthCredentialsDto })
   @Post('/signup')
-  signUp(@Body() signUpRequestDto: SignUpRequestDto): Promise<void> {
+  signUp(@Body() signUpRequestDto: SignUpRequestDto): Promise<Users> {
     return this.authService.signUp(signUpRequestDto);
   }
   @UseGuards(JwtAuthGuard)

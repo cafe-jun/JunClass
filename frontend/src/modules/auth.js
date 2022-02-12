@@ -51,6 +51,8 @@ const initialState = {
     password: '',
     passwordConfirm: '',
   },
+  auth: null,
+  authError: null,
 };
 
 const auth = handleActions(

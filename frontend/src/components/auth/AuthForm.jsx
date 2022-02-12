@@ -64,16 +64,16 @@ const ErrorMessage = styled.div`
   font-size: 0.875rem;
   margin-top: 1rem;
 `;
-const AuthForm = ({ type, form, onChange, onSubmit }) => {
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
 
   return (
     <AuthFormBlock>
-      <h3> {text}</h3>
+      <h3>{text}</h3>
       <form onSubmit={onSubmit}>
         <StyledInput
           autoComplete="username"
-          name="username"
+          name="email"
           placeholder="아이디"
           onChange={onChange}
           value={form.username}
