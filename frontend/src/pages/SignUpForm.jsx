@@ -34,6 +34,10 @@ const SignUpForm = ({ history }) => {
     if (password !== passwordConfirm) {
       //Todo 오류 처리
       setError('패스워드가 일치하지 않습니다.');
+      dispatch(changeField({ form: 'signup', key: 'password', value: '' }));
+      dispatch(
+        changeField({ form: 'signup', key: 'passwordConfirm', value: '' }),
+      );
       return;
     }
     dispatch(signup({ email, password }));

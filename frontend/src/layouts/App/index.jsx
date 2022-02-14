@@ -2,9 +2,9 @@ import React from 'react';
 import loadable from '@loadable/component';
 import { Route } from 'react-router';
 
-const SignInPage = loadable(() => import('@pages/SignInPage'));
-const Gathering = loadable(() => import('@pages/Gathering'));
-const SignUpPage = loadable(() => import('@pages/SignUpPage'));
+const SignInPage = loadable(() => import('../../pages/SignInPage'));
+const GatheringList = loadable(() => import('../../pages/GatheringList'));
+const SignUpPage = loadable(() => import('../../pages/SignUpPage'));
 const App = () => {
   return (
     <>
@@ -12,7 +12,7 @@ const App = () => {
       {/*<Switch>*/}
       <Route path="/signin" component={SignInPage} />
       <Route path="/signup" component={SignUpPage} />
-      <Route path="/gathering" component={Gathering} />
+      <Route path="/" component={GatheringList} />
       {/*</Switch>*/}
     </>
   );

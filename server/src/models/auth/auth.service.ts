@@ -36,7 +36,7 @@ export class AuthService {
     if (!user) return null;
     const passwordCheck = await bcrypt.compare(password, user.password);
     if (user && passwordCheck) {
-      const payload = { email };
+      const payload = { id: user.id, email: user.email };
       return this.jwtService.sign(payload);
     }
   }
