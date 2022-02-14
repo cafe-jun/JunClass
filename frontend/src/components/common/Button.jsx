@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
 
-const ButtonStyle = styled.button`
+const ButtonStyle = css`
   border: none;
   border-radius: 4px;
   font-size: 1rem;

@@ -9,15 +9,25 @@ import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import rootReducer, { rootSaga } from './modules/index';
+import { tempUser, check } from './modules/user';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
-
+function loadUser() {
+  try {
+    const user = localStorage.getItem('user');
+    if (!user) return;
+    store.dispatch(tempUser(user));
+    store.dispatch(check());
+  } catch (err) {
+    console.log('localStorage is not workgin');
+  }
+}
 sagaMiddleware.run(rootSaga);
-
+loadUser();
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
