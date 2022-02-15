@@ -7,3 +7,5 @@ export const signup = ({ email, password }) =>
   client.post('/auth/signup', { email, password });
 
 export const check = () => client.get('/auth/check');
+
+export const signout = ({}) => client.post('/auth/signout');

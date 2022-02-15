@@ -1,10 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
+import { signout } from '../modules/user';
 
 const HeaderContainer = (props) => {
   const { user } = useSelector(({ user }) => ({ user: user.user }));
-  return <Header user={user} />;
+  const dispatch = useDispatch();
+  const onSignOut = () => {
+    dispatch(signout());
+  };
+  return <Header user={user} onSignOut={onSignOut} />;
 };
 
 export default HeaderContainer;
