@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Responsive from '../common/Responsive';
 import styled from 'styled-components';
-
+import {} from '../../modules/';
 const EditorBlock = styled(Responsive)`
   /* 페이지 위 아래 여백 지정 */
   padding-top: 5rem;
