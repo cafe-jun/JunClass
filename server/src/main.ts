@@ -1,6 +1,7 @@
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { AppModule } from './app.module';
 import cookiePaser from 'cookie-parser';
+import * as csurf from 'csurf';
 // import { RedisIoAdapter } from './adapters/redis.adapter';
 import { SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -25,6 +26,7 @@ async function bootstrap() {
   });
   const documentOption = new BaseAPIDocumentation().initializeOptions();
   const document = SwaggerModule.createDocument(app, documentOption);
+  app.use(csurf());
   const { httpAdapter } = app.get(HttpAdapterHost);
   // app.useGlobalPipes(new CustomValidationPipe());
   app.useGlobalPipes(
