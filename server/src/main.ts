@@ -32,14 +32,11 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ transform: true, forbidNonWhitelisted: true })
   );
-  // app.useWebSocketAdapter(new RedisIoAdapter(app));
-
+  // app.useWebSocketAdapter(new RedisIoAdapter(app))
   app.use(helmet());
   SwaggerModule.setup('v1/docs', app, document);
   logger.log(`Application${appConfig.port} Port  Running`);
-
   await app.listen(appConfig.port);
-
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());

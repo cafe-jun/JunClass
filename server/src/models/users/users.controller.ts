@@ -27,6 +27,7 @@ export class UserController {
   @ApiResponse({ status: 201, description: 'APi Test1' })
   @Get('/:id')
   getUserById(@Param('id', ParseIntPipe) id): Promise<Users> {
+    //TODO ReqDTO 를 생성하기
     return this.userService.getUserById(id);
   }
   @Post('/')
