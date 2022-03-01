@@ -20,6 +20,7 @@ function loadUser() {
   try {
     const user = localStorage.getItem('user');
     if (!user) return;
+    console.log('user checking');
     store.dispatch(tempUser(user));
     store.dispatch(check());
   } catch (err) {
