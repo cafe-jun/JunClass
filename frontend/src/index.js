@@ -20,7 +20,7 @@ function loadUser() {
   try {
     const user = localStorage.getItem('user');
     if (!user) return;
-    console.log('user checking');
+    console.log('user checking role adding');
     store.dispatch(tempUser(user));
     store.dispatch(check());
   } catch (err) {
