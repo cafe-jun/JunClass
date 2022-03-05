@@ -6,7 +6,7 @@ import { check } from '../modules/user';
 import { withRouter } from 'react-router-dom';
 
 const SignUpForm = ({ history }) => {
-  console.log('withRouter Test123');
+  console.log('withRouter Test1232362');
   const [loading, setLoading] = useState();
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
