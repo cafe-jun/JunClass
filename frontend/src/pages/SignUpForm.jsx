@@ -6,8 +6,6 @@ import { check } from '../modules/user';
 import { withRouter } from 'react-router-dom';
 
 const SignUpForm = ({ history }) => {
-  console.log('withRoute loading');
-  const [loading, setLoading] = useState();
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
