@@ -1,7 +1,11 @@
 import React from 'react';
 
 const WritePage = () => {
-  return <div>WritePage</div>;
+  return (
+    <div>
+      <div> </div>
+    </div>
+  );
 };
 
 export default WritePage;
