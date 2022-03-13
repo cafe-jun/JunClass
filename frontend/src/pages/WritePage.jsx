@@ -3,7 +3,7 @@ import React from 'react';
 const WritePage = () => {
   return (
     <div>
-      <div> </div>
+      <div>Redux Test </div>
     </div>
   );
 };
