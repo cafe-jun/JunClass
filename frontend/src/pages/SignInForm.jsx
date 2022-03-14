@@ -53,6 +53,7 @@ const SigInForm = ({ history }) => {
       }
     }
   }, [history, user]);
+  console.log('session Expire');
   return (
     <AuthForm
       type="signin"
