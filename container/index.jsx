@@ -20,6 +20,7 @@ const WriteActionButtonsContainer = () => {
     const onPublish = () => {
         console.log('update 123');
         if (originalPostId) {
+            console.log(`${originalPostId}`);
             dispatch(updatePost({ title, body, tags, id: originalPostId }));
             return;
         }
