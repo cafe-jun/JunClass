@@ -49,7 +49,7 @@ const SigInForm = ({ history }) => {
         localStorage.setItem('user lohin status', JSON.stringify(user));
       } catch (err) {
         console.log(err);
-        console.log('localStorage is test not working this Test');
+        console.log('localStorage is not working');
       }
     }
   }, [history, user]);
