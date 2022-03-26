@@ -47,9 +47,7 @@ const SigInForm = ({ history }) => {
       history.push('/');
       try {
         localStorage.setItem('user', JSON.stringify(user));
-        console.log('write Test');
       } catch (err) {
-        console.log(err);
         console.log('localStorage is not working');
       }
     }
